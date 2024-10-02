@@ -11,9 +11,9 @@ export default [
     pluginReact.configs.flat.recommended,
     {
         rules: {
-            'react/react-in-jsx-scope': 'error',
+            'react/react-in-jsx-scope': 'off',
             'import/extensions': 'off',
-            'react/jsx-no-target-blank': 'off',
+            'react/jsx-no-target-blank': 'error',
             indent: ['error', 4],
         },
     },
