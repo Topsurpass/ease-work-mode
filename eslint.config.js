@@ -13,7 +13,7 @@ export default [
         rules: {
             'react/react-in-jsx-scope': 'off',
             'import/extensions': 'off',
-            'react/jsx-no-target-blank': 'off',
+            //'react/jsx-no-target-blank': 'off',
             indent: ['error', 4],
         },
     },
