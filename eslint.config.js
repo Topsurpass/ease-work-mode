@@ -11,17 +11,17 @@ export default [
     pluginReact.configs.flat.recommended,
     {
         rules: {
-            //'react/react-in-jsx-scope': 'off',
+            'react/react-in-jsx-scope': 'error',
             'import/extensions': 'off',
             'react/jsx-no-target-blank': 'off',
             indent: ['error', 4],
         },
     },
-    //{
-    //    settings: {
-    //        react: {
-    //            version: 'detect', // Automatically detects the React version
-    //        },
-    //    },
-    //},
+    {
+        settings: {
+            react: {
+                version: 'detect', // Automatically detects the React version
+            },
+        },
+    },
 ];
