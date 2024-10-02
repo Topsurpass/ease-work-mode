@@ -17,11 +17,11 @@ export default [
             indent: ['error', 4],
         },
     },
-    {
-        settings: {
-            react: {
-                version: 'detect', // Automatically detects the React version
-            },
-        },
-    },
+    //{
+    //    settings: {
+    //        react: {
+    //            version: 'detect', // Automatically detects the React version
+    //        },
+    //    },
+    //},
 ];
