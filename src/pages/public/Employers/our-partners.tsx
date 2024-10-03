@@ -9,13 +9,15 @@ import { PARTNERS } from '@/data/our-partners-data';
 
 export default function TrustedPartners() {
     return (
-        <section className="p-10 md:w-[80%]">
+        <section className="p-10 md:w-[80%] flex flex-col justify-center items-center">
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-gray-800">
-                    Get Jobs From leading Tech Companies
+                    We Have Good Partners
                 </h2>
-                <p className="text-gray-600 mt-2">
+                <p className="text-gray-600 mt-2 max-w-xl">
                     We are proud to partner with leading companies globally.
+                    These companies have used EaseWork to hire most of their
+                    staff.
                 </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

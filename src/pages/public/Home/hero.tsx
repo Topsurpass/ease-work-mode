@@ -23,14 +23,6 @@ export default function Hero() {
                         <IoIosSearch className="absolute right-3 top-3 w-6 h-6 text-gray-500" />
                     </div>
                 </div>
-                {/*<div className="mt-8">
-                    <a
-                        href="/post-job"
-                        className="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg shadow-lg font-semibold transition duration-300 hover:bg-gray-200"
-                    >
-                        Post a Job
-                    </a>
-                </div>*/}
             </div>
         </section>
     );

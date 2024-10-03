@@ -1,12 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { MENU_HEADER } from '@/routes/menu-list';
 import { IoMenuOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import useMobileMenu from '@/hooks/useMobileMenu';
+import Button from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const isSignedInPage = location.pathname === '/sign-in';
 
     return (
         <header className="fixed top-0 left-0 right-0 bg-white shadow-md h-20 px-5 flex items-center justify-between z-50">
@@ -18,6 +24,15 @@ export default function Header() {
             </NavLink>
 
             <nav className="hidden md:flex items-center gap-6">
+                {!isSignedInPage && (
+                    <Button
+                        label="Sign in"
+                        size="lg"
+                        type="button"
+                        onClick={() => navigate('/sign-in')}
+                    />
+                )}
+
                 {MENU_HEADER.map((menu, idx) => (
                     <NavLink
                         to={menu.path}

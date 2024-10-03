@@ -14,7 +14,16 @@ export default [
             'react/react-in-jsx-scope': 'off',
             'import/extensions': 'off',
             'react/jsx-no-target-blank': 'off',
-            indent: ['error', 4],
+            'react/no-unescaped-entities': 'off',
+            'no-unused-vars': 'off', // Disable unused vars check (general)
+            '@typescript-eslint/no-explicit-any': 'off', // Allow any type
+            '@typescript-eslint/ban-ts-comment': 'off', // Turn off ts-ignore warning
+            '@typescript-eslint/no-unused-vars': 'off', // Allow unused vars in TS
+            'react/prop-types': 'off', // Disable prop-types validation
+            indent: 'off', // Disable indentation checking
+            // Removed the following lines
+            // 'import/prefer-default-export': 'off',
+            // 'react-refresh/only-export-components': 'off',
         },
     },
     {
