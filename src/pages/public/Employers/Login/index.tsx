@@ -1,28 +1,39 @@
-import Header from '@/components/header';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { PasswordField, TextField } from '@/components/ui/forms';
-import { Mail } from 'lucide-react';
+import { Mail, AlertCircle } from 'lucide-react';
 import CheckboxField from '@/components/ui/forms/checkbox-field';
 import { Link } from 'react-router-dom';
 import Button from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import useLoginUser from '@/api/authentication/use-login-user';
+import { LoginSchema, LoginInputs } from '@/validations/login-schema';
 
-export default function Login() {
-    const { control, handleSubmit } = useForm();
+export default function EmployerLogin() {
     const [showPassword, setShowPassword] = useState(false);
+    const { mutate: loginUser, isPending, isError, error } = useLoginUser();
+    const { control, handleSubmit, watch } = useForm<LoginInputs>({
+        resolver: zodResolver(LoginSchema),
+        defaultValues: {
+            email: 'employer@gmail.com',
+            password: 'password',
+        },
+    });
+
+    const navigate = useNavigate();
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
-    const processForm = async (data: unknown) => {
-        console.log(data);
+    const processForm: SubmitHandler<LoginInputs> = async (data) => {
+        loginUser(data);
     };
 
     return (
         <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50">
-            <Header />
-            {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
+            <pre>{JSON.stringify(watch(), null, 2)}</pre>
 
             <div className="bg-white p-8 shadow-lg rounded-lg max-w-md w-full">
                 <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
@@ -64,21 +75,22 @@ export default function Login() {
                             label="Remember me"
                             name="remember"
                         />
-                        <Link
-                            to={'/forgot-password'}
-                            className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
+                        <Button
+                            type="button"
+                            onClick={() => navigate('/forgot-password')}
+                            variant="link"
+                            className="text-gray-700"
                         >
-                            Forgot your password?
-                        </Link>
+                            Forget Password?
+                        </Button>
                     </div>
 
                     <Button
                         className={'w-full'}
                         type="submit"
                         label="Sign In"
-                        //isLoading={isPending}
+                        isLoading={isPending}
                         loadingText="Please wait"
-                        // disabled={isPending}
                     />
                 </form>
 
@@ -94,6 +106,14 @@ export default function Login() {
                     </p>
                 </div>
             </div>
+            {isError && (
+                <div className="mt-2 flex items-center justify-center gap-2">
+                    <AlertCircle size={20} color="red" />
+                    <span className="text-red-500">
+                        {error?.message as any}
+                    </span>
+                </div>
+            )}
         </div>
     );
 }

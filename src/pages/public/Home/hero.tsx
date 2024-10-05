@@ -2,7 +2,7 @@ import { IoIosSearch } from 'react-icons/io';
 
 export default function Hero() {
     return (
-        <section className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white w-full">
+        <section className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white w-full mt-20">
             <div className="container mx-auto px-4 py-20 text-center">
                 <h1 className="text-4xl font-extrabold md:text-xl lg:text-7xl">
                     EASE WORK MODE

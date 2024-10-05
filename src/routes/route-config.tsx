@@ -1,16 +1,19 @@
-import Home from '@/pages/private/Home';
+//import Home from '@/pages/private/Home/header';
 import HomePage from '@/pages/public/Home';
 import Employer from '@/pages/public/Employers';
-import Profile from '@/pages/private/Profile';
-import Login from '@/pages/public/Login';
+import Login from '@/pages/public/Home/Login';
 import SignUp from '@/pages/public/Sign-up';
-import MyReviews from '@/pages/private/MyReviews';
-import MyJobs from '@/pages/private/MyJobs';
-import Settings from '@/pages/private/Settings';
+import Notifications from '@/pages/User/Notifications';
+
+import Settings from '@/pages/User/Settings';
 import PublicRoute from './public-route';
 import ProtectedRoute from './protected-route';
 import PublicLayout from '@/layout/public-layout';
 import ProtectedLayout from '@/layout/protected-layout';
+import EmployerLogin from '@/pages/public/Employers/Login';
+import Profile from '@/pages/User/Profile';
+import UserDashboard from '@/pages/User/Dashboard';
+import Applications from '@/pages/User/Applications';
 
 const routeConfig = [
     {
@@ -26,11 +29,16 @@ const routeConfig = [
                 element: <HomePage />,
             },
             {
-                path: 'sign-in',
+                path: '/user/login',
                 element: <Login />,
             },
             {
-                path: 'sign-up',
+                path: '/employer/login',
+                element: <EmployerLogin />,
+            },
+
+            {
+                path: 'signup',
                 element: <SignUp />,
             },
             {
@@ -49,23 +57,23 @@ const routeConfig = [
         children: [
             {
                 index: true,
-                path: '/',
-                element: <Home />,
+                path: 'dashboard',
+                element: <UserDashboard />,
             },
             {
-                path: '/profile',
+                path: 'profile',
                 element: <Profile />,
             },
             {
-                path: '/jobs',
-                element: <MyJobs />,
+                path: 'applications',
+                element: <Applications />,
             },
             {
-                path: '/reviews',
-                element: <MyReviews />,
+                path: 'notifications',
+                element: <Notifications />,
             },
             {
-                path: '/settings',
+                path: 'settings',
                 element: <Settings />,
             },
         ],
