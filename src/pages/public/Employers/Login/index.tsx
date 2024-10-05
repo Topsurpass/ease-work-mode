@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { PasswordField, TextField } from '@/components/ui/forms';
-import { Mail } from 'lucide-react';
+import { Mail, AlertCircle } from 'lucide-react';
 import CheckboxField from '@/components/ui/forms/checkbox-field';
 import { Link } from 'react-router-dom';
 import Button from '@/components/ui/button';
@@ -28,7 +28,7 @@ export default function EmployerLogin() {
     };
 
     const processForm: SubmitHandler<LoginInputs> = async (data) => {
-        console.log(data);
+        loginUser(data);
     };
 
     return (
@@ -106,6 +106,14 @@ export default function EmployerLogin() {
                     </p>
                 </div>
             </div>
+            {isError && (
+                <div className="mt-2 flex items-center justify-center gap-2">
+                    <AlertCircle size={20} color="red" />
+                    <span className="text-red-500">
+                        {error?.message as any}
+                    </span>
+                </div>
+            )}
         </div>
     );
 }

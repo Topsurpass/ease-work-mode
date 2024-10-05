@@ -9,7 +9,7 @@ import NotificationCard from './notification card';
 import { cn } from '@/lib/utils';
 
 export default function Profile() {
-    const [jobs, setJobs] = useState([
+    const [jobs] = useState([
         {
             id: 1,
             title: 'Software Engineer',
@@ -33,7 +33,7 @@ export default function Profile() {
         },
     ]);
 
-    const [notifications, setNotifications] = useState([
+    const [notifications] = useState([
         {
             id: 1,
             message: 'You have a new job alert for Software Engineer.',
@@ -97,7 +97,7 @@ export default function Profile() {
                         <li>
                             <Link
                                 to="/saved-jobs"
-                                className="block text-gray-700 hover:text-gray-900 flex items-center"
+                                className=" text-gray-700 hover:text-gray-900 flex items-center"
                             >
                                 <Briefcase className="h-5 w-5 mr-2" />
                                 Saved Jobs
@@ -106,7 +106,7 @@ export default function Profile() {
                         <li>
                             <Link
                                 to="/applied-jobs"
-                                className="block text-gray-700 hover:text-gray-900 flex items-center"
+                                className=" text-gray-700 hover:text-gray-900 flex items-center"
                             >
                                 <Briefcase className="h-5 w-5 mr-2" />
                                 Applied Jobs
@@ -115,7 +115,7 @@ export default function Profile() {
                         <li>
                             <Link
                                 to="/profile-completion"
-                                className="block text-gray-700 hover:text-gray-900 flex items-center"
+                                className=" text-gray-700 hover:text-gray-900 flex items-center"
                             >
                                 <User className="h-5 w-5 mr-2" />
                                 Profile Completion

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { USER_DASHBOARD_MENU } from '@/routes/menu-list';
 import { cn } from '@/lib/utils';
 import useMobileMenu from '@/hooks/useMobileMenu';
