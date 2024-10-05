@@ -14,7 +14,7 @@ export default function JobListing() {
         <section className="flex flex-col justify-center items-center md:p-10 p-5">
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-gray-800">
-                    Job listing
+                    Jobs For You
                 </h2>
                 <p className="text-gray-600 mt-2">
                     Apply to any of the currently available jobs

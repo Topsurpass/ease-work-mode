@@ -1,54 +1,41 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { USER_DASHBOARD_MENU } from '@/routes/menu-list';
 import { cn } from '@/lib/utils';
-import { MENU_HEADER } from '@/routes/menu-list';
+import useMobileMenu from '@/hooks/useMobileMenu';
 import { IoMenuOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
-import useMobileMenu from '@/hooks/useMobileMenu';
-import Button from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
 
-export default function Header() {
+export default function DashBoardHeader() {
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const isSignedInPage = location.pathname === '/sign-in';
-
+    //const navigate = useNavigate();
     return (
         <header className="fixed top-0 left-0 right-0 bg-white shadow-md h-20 px-5 flex items-center justify-between z-50">
             <NavLink
-                to="/"
+                to="/employer"
                 className="text-2xl font-bold text-blue-600 hover:text-blue-600"
             >
                 EaseWork
             </NavLink>
 
             <nav className="hidden md:flex items-center gap-6">
-                {!isSignedInPage && (
-                    <Button
-                        label="Sign in"
-                        size="lg"
-                        type="button"
-                        onClick={() => navigate('/sign-in')}
-                    />
-                )}
-
-                {MENU_HEADER.map((menu, idx) => (
+                {USER_DASHBOARD_MENU.map((menu, idx) => (
                     <NavLink
                         to={menu.path}
                         key={idx}
                         className={({ isActive }) =>
                             cn(
-                                'text-gray-600 hover:text-blue-600 transition-colors',
+                                'text-gray-600 hover:text-blue-600 transition-colors flex',
                                 { 'text-blue-600 hover:gray-600': isActive }
                             )
                         }
                     >
-                        {menu.title}
+                        <p className="flex gap-1">
+                            {menu.title}
+                            {menu.icon}
+                        </p>
                     </NavLink>
                 ))}
             </nav>
-
             <div className="md:hidden">
                 {isMobileMenuOpen ? (
                     <IoMdClose
@@ -73,13 +60,13 @@ export default function Header() {
                 )}
             >
                 <ul className="flex flex-col gap-4 p-5">
-                    {MENU_HEADER.map((menu, idx) => (
+                    {USER_DASHBOARD_MENU.map((menu, idx) => (
                         <li key={idx}>
                             <NavLink
                                 to={menu.path}
                                 className={({ isActive }) =>
                                     cn(
-                                        'text-gray-600 hover:text-blue-600 transition-colors flex gap-2 items-center',
+                                        'text-gray-600 hover:text-blue-600 transition-colors flex items-center p-3',
                                         {
                                             'text-blue-600 hover:gray-600':
                                                 isActive,
@@ -88,7 +75,9 @@ export default function Header() {
                                 }
                                 onClick={toggleMobileMenu}
                             >
-                                {menu.icon} {menu.title}
+                                <p className="flex gap-2">
+                                    {menu.icon} {menu.title}
+                                </p>
                             </NavLink>
                         </li>
                     ))}

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Hero() {
     const navigate = useNavigate();
     return (
-        <section className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white w-full">
+        <section className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white w-full mt-20">
             <div className="container mx-auto px-4 py-20 text-center">
                 <h1 className="text-4xl font-bold md:text-xl lg:text-6xl">
                     Find Your Perfect Candidate
