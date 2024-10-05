@@ -50,12 +50,14 @@ export default function JobListing() {
                                 </CardDescription>
                                 <CardDescription className="font-semibold">
                                     {`${job.type}/${job.location}`}
+                                    <p>Pay range: {`${job.pay}`}</p>
                                 </CardDescription>
                             </>
                         </CardHeader>
                         <CardContent className="space-y-4 pt-3">
-                            <p className="text-gray-700">{job.description1}</p>
-                            <p className="text-gray-700">{job.description2}</p>
+                            <p className="text-gray-700">
+                                {job.shortRoleDescription}
+                            </p>
                         </CardContent>
 
                         <CardFooter className="flex justify-between items-center border-t pt-4">

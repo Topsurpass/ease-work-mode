@@ -1,3 +1,7 @@
 export default function Notifications() {
-    return <div>My Notification Page</div>;
+    return (
+        <div className="min-h-screen w-full flex flex-col justify-center items-center">
+            My Notification page
+        </div>
+    );
 }

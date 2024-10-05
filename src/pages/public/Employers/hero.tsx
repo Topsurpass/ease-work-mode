@@ -18,7 +18,7 @@ export default function Hero() {
                         size="lg"
                         type="button"
                         className="bg-white text-blue-600 px-8 py-3 rounded-full shadow-md hover:bg-gray-200 transition duration-200"
-                        onClick={() => navigate('/post-job')}
+                        onClick={() => navigate('/employer/login')}
                     />
                 </div>
             </div>

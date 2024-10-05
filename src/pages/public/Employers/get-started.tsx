@@ -22,14 +22,14 @@ export default function CallToAction() {
                         size="lg"
                         type="button"
                         className="bg-white text-blue-600 px-6 py-3 rounded-full shadow-md hover:bg-blue-500 hover:text-white transition duration-200"
-                        onClick={() => navigate('/post-job')}
+                        onClick={() => navigate('/employer/login')}
                     />
                     <Button
                         label=" View Pricing Plans"
                         size="lg"
                         type="button"
                         className="bg-white text-blue-600 px-6 py-3 rounded-full shadow-md hover:bg-blue-500 hover:text-white  transition duration-200"
-                        onClick={() => navigate('/pricing')}
+                        onClick={() => navigate('/product/pricing')}
                     />
                 </div>
             </div>

@@ -10,13 +10,13 @@ type RequestPayload = {
     password: string;
 };
 
-const useLoginUser = () => {
+const useLoginEmployer = () => {
     const queryClient = useQueryClient();
     const addUserToStore = useAuthStore((state) => state.setUser);
     return useMutation({
         mutationFn: async (requestPayload: RequestPayload) => {
             try {
-                const res = await HTTP.post('/user/login', requestPayload);
+                const res = await HTTP.post('/employer/login', requestPayload);
                 return res;
             } catch (error) {
                 return Promise.reject(error);
@@ -28,10 +28,9 @@ const useLoginUser = () => {
             const decodedToken = jwtDecode(token);
             addUserToStore({
                 token,
-                ...rest.data.jobSeeker,
+                ...rest.data.employer,
                 ...decodedToken,
             } as any); // TODO: replace any type with the correct one
-            // window.location.reload();
             queryClient.invalidateQueries();
         },
         onError: (err: any) => {
@@ -42,4 +41,4 @@ const useLoginUser = () => {
     });
 };
 
-export default useLoginUser;
+export default useLoginEmployer;

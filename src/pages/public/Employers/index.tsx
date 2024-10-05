@@ -3,7 +3,7 @@ import Hero from '@/pages/public/Employers/hero';
 import Benefit from '@/pages/public/Employers/why-choose-us';
 import Workings from '@/pages/public/Employers/how-it-works';
 import TrustedPartners from '@/pages/public/Employers/our-partners';
-import Action from '@/pages/public/Employers/action';
+import Action from '@/pages/public/Employers/get-started';
 import EmployerHeader from './employer-header';
 
 export default function Employer() {

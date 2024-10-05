@@ -4,7 +4,7 @@ import { Bell, Briefcase, User, Settings } from 'lucide-react';
 
 export const USER_MENU_HEADER: MenuList = [
     {
-        path: '/employer',
+        path: '/home/employer',
         title: 'Employer/Post job',
         icon: <MdAssuredWorkload />,
     },

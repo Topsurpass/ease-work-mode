@@ -6,35 +6,24 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { IoIosSearch } from 'react-icons/io';
 import { JOBS } from '@/data/job-list-data';
 import { useState } from 'react';
 import Button from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import Search from '@/pages/User/Dashboard/search';
 
 export default function JobListing() {
-    // Set the first job as the default selected job
     const [selectedJob, setSelectedJob] = useState(JOBS[0]);
     const navigate = useNavigate();
 
     return (
-        <section className="flex flex-col pt-20 border-2 w-full">
-            <div className="mt-20 flex justify-center">
-                <div className="relative w-full max-w-lg">
-                    <input
-                        type="text"
-                        placeholder="Search for jobs..."
-                        className="w-full px-5 py-3 rounded-lg text-gray-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black"
-                    />
-                    <IoIosSearch className="absolute right-3 top-3 w-6 h-6 text-gray-500" />
-                </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-5 justify-center pt-20 w-full">
+        <section className="flex flex-col py-20 border-2 w-full">
+            <Search />
+            <div className="flex flex-col md:flex-row gap-5 justify-center pt-10 md:pt-20 w-full px-5">
                 <section className="grid gap-5">
                     <div className="flex justify-center md:justify-normal">
                         <p className="text-gray-600 text-xl font-semibold">
-                            Jobs you might like
+                            Recent Jobs
                         </p>
                     </div>
                     {JOBS.map((job, idx) => (
@@ -67,15 +56,14 @@ export default function JobListing() {
                                     {job.company}
                                 </CardDescription>
                                 <CardDescription className="font-semibold">
-                                    {`${job.type} / ${job.location}`}
+                                    <p>{`${job.type} / ${job.location}`}</p>
+
+                                    <p>Pay range: {`${job.pay}`}</p>
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4 pt-3">
                                 <p className="text-gray-700">
-                                    {job.description1}
-                                </p>
-                                <p className="text-gray-700">
-                                    {job.description2}
+                                    {job.shortRoleDescription}
                                 </p>
                             </CardContent>
 
@@ -83,10 +71,12 @@ export default function JobListing() {
                                 <p className="text-gray-500 text-sm">
                                     {job.posted}
                                 </p>
+
                                 <Button
                                     label="Details"
                                     size="lg"
                                     type="button"
+                                    className="flex md:hidden"
                                     onClick={() => navigate('/job/:id')}
                                 />
                             </CardFooter>
@@ -96,15 +86,15 @@ export default function JobListing() {
 
                 {selectedJob && (
                     <aside className="hidden md:block sticky top-28 h-[80vh] overflow-y-auto">
-                        <div className="text-center mb-4">
-                            <p className="text-gray-600 text-lg font-semibold">
-                                Full job description
+                        <div className="text-left mb-4 sticky block">
+                            <p className="text-gray-600 text-xl font-semibold">
+                                Job details
                             </p>
                         </div>
                         <Card className="max-w-lg mx-auto shadow-lg">
                             <CardHeader className="pb-4 border-b">
                                 <div className="flex flex-row items-center justify-between">
-                                    <CardTitle className="text-lg font-semibold">
+                                    <CardTitle className="text-xl font-bold">
                                         {selectedJob.title}
                                     </CardTitle>
                                     <svg
@@ -126,16 +116,63 @@ export default function JobListing() {
                                     {selectedJob.company}
                                 </CardDescription>
                                 <CardDescription className="font-semibold">
-                                    {`${selectedJob.type} / ${selectedJob.location}`}
+                                    <p>{`${selectedJob.type} / ${selectedJob.location}`}</p>
+                                    <p>Pay range: {`${selectedJob.pay}`}</p>
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4 pt-3">
-                                <p className="text-gray-700">
-                                    {selectedJob.description1}
-                                </p>
-                                <p className="text-gray-700">
-                                    {selectedJob.description2}
-                                </p>
+                                <div className="flex flex-col gap-3">
+                                    <div>
+                                        <h3 className="font-semibold text-lg ">
+                                            About Company
+                                        </h3>
+                                        <p className="text-gray-700">
+                                            {selectedJob.aboutCompany}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-lg ">
+                                            Full Role Description
+                                        </h3>
+                                        <p className="text-gray-700">
+                                            {selectedJob.fullRoleDescription}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-lg ">
+                                            Key Responsibilities
+                                        </h3>
+                                        <p className="text-gray-700">
+                                            {selectedJob.keyResponsibility}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-lg ">
+                                            Qualification and Experience
+                                        </h3>
+                                        <p className="text-gray-700">
+                                            {
+                                                selectedJob.qualificationAndExperience
+                                            }
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-lg ">
+                                            Method of Application
+                                        </h3>
+                                        <p className="text-gray-700">
+                                            {selectedJob.methodOfApplication}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-lg ">
+                                            Application Deadline
+                                        </h3>
+                                        <p className="text-gray-700">
+                                            {selectedJob.deadline}
+                                        </p>
+                                    </div>
+                                </div>
                             </CardContent>
                             <CardFooter className="flex justify-between items-center border-t pt-4">
                                 <p className="text-gray-500 text-sm">

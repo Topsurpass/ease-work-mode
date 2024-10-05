@@ -7,11 +7,10 @@ import { IoMdClose } from 'react-icons/io';
 
 export default function DashBoardHeader() {
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
-    //const navigate = useNavigate();
     return (
         <header className="fixed top-0 left-0 right-0 bg-white shadow-md h-20 px-5 flex items-center justify-between z-50">
             <NavLink
-                to="/employer"
+                to="/dashboard"
                 className="text-2xl font-bold text-blue-600 hover:text-blue-600"
             >
                 EaseWork
@@ -39,12 +38,12 @@ export default function DashBoardHeader() {
             <div className="md:hidden">
                 {isMobileMenuOpen ? (
                     <IoMdClose
-                        className="w-6 h-6 text-blue-600 cursor-pointer"
+                        className="w-8 h-8 text-blue-600 cursor-pointer border"
                         onClick={toggleMobileMenu}
                     />
                 ) : (
                     <IoMenuOutline
-                        className="w-6 h-6 text-blue-600 cursor-pointer"
+                        className="w-8 h-8 text-blue-600 cursor-pointer"
                         onClick={toggleMobileMenu}
                     />
                 )}
@@ -59,7 +58,7 @@ export default function DashBoardHeader() {
                     }
                 )}
             >
-                <ul className="flex flex-col gap-4 p-5">
+                <ul className="flex flex-col gap-4">
                     {USER_DASHBOARD_MENU.map((menu, idx) => (
                         <li key={idx}>
                             <NavLink

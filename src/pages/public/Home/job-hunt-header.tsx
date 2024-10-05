@@ -13,7 +13,7 @@ export default function Header() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const isSignedInPage = location.pathname === '/sign-in';
+    const isSignedInPage = location.pathname === '/login';
 
     return (
         <header className="fixed top-0 left-0 right-0 bg-white shadow-md h-20 px-5 flex items-center justify-between z-50">
@@ -30,7 +30,7 @@ export default function Header() {
                         label="Sign in"
                         size="lg"
                         type="button"
-                        onClick={() => navigate('/user/login')}
+                        onClick={() => navigate('/login')}
                     />
                 )}
 
@@ -94,7 +94,7 @@ export default function Header() {
                         </li>
                     ))}
                     <NavLink
-                        to={'/user/login'}
+                        to={'/login'}
                         className={'flex gap-2 text-gray-600 pt-3'}
                     >
                         <FaUser />
