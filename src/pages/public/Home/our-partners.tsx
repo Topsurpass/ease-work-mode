@@ -24,7 +24,7 @@ export default function TrustedPartners() {
                         key={index}
                         className="shadow-lg transform transition hover:scale-105"
                     >
-                        <CardHeader className="flex justify-center py-6">
+                        <CardHeader className="flex justify-center items-center py-6">
                             <img
                                 src={partner.logo}
                                 alt={partner.name}

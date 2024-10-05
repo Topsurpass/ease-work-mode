@@ -5,7 +5,6 @@ import setAuthToken, { setAuthTokenHTTP } from '@/lib/set-auth-token';
 
 type TState = {
     id: string;
-    userId: string;
     expiresIn: number;
     accessToken: string;
     refreshToken: string;
@@ -14,6 +13,11 @@ type TState = {
     email: string;
     phone: string;
     roles: string[];
+    location: string;
+    bio: string;
+    resumeUrl: string;
+    createdAt: string;
+    updatedAt: string;
     isAuthenticated: boolean;
     address: string;
 };
@@ -26,10 +30,14 @@ type TAction = {
 // define the initial state
 const initialState: TState = {
     id: '',
-    userId: '',
     expiresIn: 0,
     accessToken: '',
     refreshToken: '',
+    location: '',
+    bio: '',
+    createdAt: '',
+    updatedAt: '',
+    resumeUrl: '',
     firstname: '',
     lastname: '',
     email: '',
@@ -51,12 +59,16 @@ const useAuthStore = create<TState & TAction>()(
                             state.accessToken = payload.token;
                             state.refreshToken = payload.refreshToken;
                             state.email = payload.email;
-                            state.firstname = payload.firstname;
-                            state.lastname = payload.lastname;
+                            state.firstname = payload.firstName;
+                            state.lastname = payload.lastName;
                             state.roles = payload.roles;
                             state.isAuthenticated = true;
+                            state.location = payload.location;
+                            state.bio = payload.bio;
+                            state.createdAt = payload.createdAt;
+                            state.updatedAt = payload.updatedAt;
+                            state.resumeUrl = payload.resumeUrl;
                             state.id = payload.id;
-                            state.userId = payload.userId;
                             state.phone = payload.phone;
                             state.address = payload.address;
                         }),

@@ -3,7 +3,7 @@ import { BENEFITS } from '@/data/benefits';
 export default function Benefits() {
     return (
         <section className="py-20 bg-gradient-to-r from-white to-gray-50 w-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="md:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-8 flex flex-col justify-center items-center ">
                     <h2 className="text-3xl font-bold text-gray-800">
                         Why Choose Us?

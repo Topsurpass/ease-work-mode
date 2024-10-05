@@ -16,8 +16,8 @@ export default function Login() {
     const { control, handleSubmit } = useForm<LoginInputs>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
-            email: 'iammoses40@gmail.com',
-            password: 'ossigma123',
+            email: 'temitopeabiodun685@gmail.com',
+            password: 'Password',
         },
     });
 
@@ -28,7 +28,11 @@ export default function Login() {
     };
 
     const processForm: SubmitHandler<LoginInputs> = async (data) => {
-        loginUser(data);
+        loginUser(data, {
+            onSuccess: () => {
+                navigate('/dashboard');
+            },
+        });
     };
 
     return (
@@ -110,7 +114,7 @@ export default function Login() {
                 <div className="mt-2 flex items-center justify-center gap-2">
                     <AlertCircle size={20} color="red" />
                     <span className="text-red-500">
-                        {error?.message as any}
+                        {error?.response?.data?.message as any}
                     </span>
                 </div>
             )}

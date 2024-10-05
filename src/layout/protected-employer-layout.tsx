@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-export default function ProtectedLayout() {
+export default function ProtectedEmployerLayout() {
     return (
         <div>
             <Outlet />

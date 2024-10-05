@@ -1,19 +1,21 @@
-//import Home from '@/pages/private/Home/header';
 import HomePage from '@/pages/public/Home';
 import Employer from '@/pages/public/Employers';
 import Login from '@/pages/public/Home/Login';
 import SignUp from '@/pages/public/Sign-up';
 import Notifications from '@/pages/User/Notifications';
-
+import Pricing from '@/pages/public/pricing';
 import Settings from '@/pages/User/Settings';
 import PublicRoute from './public-route';
-import ProtectedRoute from './protected-route';
+import ProtectedUserRoute from './protected-user-route';
+import ProtectedEmployerRoute from './protected-employer-route';
 import PublicLayout from '@/layout/public-layout';
-import ProtectedLayout from '@/layout/protected-layout';
+import ProtectedUserLayout from '@/layout/protected-user-layout';
+import ProtectedEmployerLayout from '@/layout/protected-employer-layout';
 import EmployerLogin from '@/pages/public/Employers/Login';
 import Profile from '@/pages/User/Profile';
 import UserDashboard from '@/pages/User/Dashboard';
 import Applications from '@/pages/User/Applications';
+import EmployerDashBoard from '@/pages/Employer';
 
 const routeConfig = [
     {
@@ -29,7 +31,11 @@ const routeConfig = [
                 element: <HomePage />,
             },
             {
-                path: '/user/login',
+                path: '/home/employer',
+                element: <Employer />,
+            },
+            {
+                path: '/login',
                 element: <Login />,
             },
             {
@@ -38,21 +44,21 @@ const routeConfig = [
             },
 
             {
-                path: 'signup',
+                path: '/signup',
                 element: <SignUp />,
             },
+
             {
-                path: 'employer',
-                element: <Employer />,
+                path: '/product/pricing',
+                element: <Pricing />,
             },
         ],
     },
     {
-        path: '/',
         element: (
-            <ProtectedRoute>
-                <ProtectedLayout />
-            </ProtectedRoute>
+            <ProtectedUserRoute>
+                <ProtectedUserLayout />
+            </ProtectedUserRoute>
         ),
         children: [
             {
@@ -75,6 +81,21 @@ const routeConfig = [
             {
                 path: 'settings',
                 element: <Settings />,
+            },
+        ],
+    },
+    {
+        path: '/employer',
+        element: (
+            <ProtectedEmployerRoute>
+                <ProtectedEmployerLayout />
+            </ProtectedEmployerRoute>
+        ),
+        children: [
+            {
+                index: true,
+                path: 'dashboard',
+                element: <EmployerDashBoard />,
             },
         ],
     },

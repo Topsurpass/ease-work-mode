@@ -1,3 +1,7 @@
 export default function Applications() {
-    return <div>My Jobs Page</div>;
+    return (
+        <div className="min-h-screen w-full flex flex-col justify-center items-center">
+            My application page
+        </div>
+    );
 }

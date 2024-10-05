@@ -7,17 +7,22 @@ import CheckboxField from '@/components/ui/forms/checkbox-field';
 import { Link } from 'react-router-dom';
 import Button from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import useLoginUser from '@/api/authentication/use-login-user';
+import useLoginEmployer from '@/api/authentication/use-login-employer';
 import { LoginSchema, LoginInputs } from '@/validations/login-schema';
 
 export default function EmployerLogin() {
     const [showPassword, setShowPassword] = useState(false);
-    const { mutate: loginUser, isPending, isError, error } = useLoginUser();
-    const { control, handleSubmit, watch } = useForm<LoginInputs>({
+    const {
+        mutate: loginEmployer,
+        isPending,
+        isError,
+        error,
+    } = useLoginEmployer();
+    const { control, handleSubmit } = useForm<LoginInputs>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
-            email: 'employer@gmail.com',
-            password: 'password',
+            email: 'temitopeabiodun685@gmail.com',
+            password: 'Password',
         },
     });
 
@@ -28,12 +33,16 @@ export default function EmployerLogin() {
     };
 
     const processForm: SubmitHandler<LoginInputs> = async (data) => {
-        loginUser(data);
+        loginEmployer(data, {
+            onSuccess: () => {
+                navigate('/employer/dashboard');
+            },
+        });
     };
 
     return (
         <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50">
-            <pre>{JSON.stringify(watch(), null, 2)}</pre>
+            {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
 
             <div className="bg-white p-8 shadow-lg rounded-lg max-w-md w-full">
                 <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
@@ -110,7 +119,7 @@ export default function EmployerLogin() {
                 <div className="mt-2 flex items-center justify-center gap-2">
                     <AlertCircle size={20} color="red" />
                     <span className="text-red-500">
-                        {error?.message as any}
+                        {error?.response?.data?.message as any}
                     </span>
                 </div>
             )}
