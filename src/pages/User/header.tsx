@@ -24,7 +24,10 @@ export default function DashBoardHeader() {
                         className={({ isActive }) =>
                             cn(
                                 'text-gray-600 hover:text-blue-600 transition-colors flex',
-                                { 'text-blue-600 hover:gray-600': isActive }
+                                {
+                                    'text-blue-600 hover:gray-600 border-b-2 pb-2 mt-2 border-blue-600':
+                                        isActive,
+                                }
                             )
                         }
                     >

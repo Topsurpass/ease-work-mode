@@ -78,11 +78,12 @@ export default function EmployerLogin() {
                         />
                     </div>
 
-                    <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center justify-between w-full bg-white">
                         <CheckboxField
                             control={control}
                             label="Remember me"
                             name="remember"
+                            className="bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black placeholder-gray-500"
                         />
                         <Button
                             type="button"
@@ -95,7 +96,7 @@ export default function EmployerLogin() {
                     </div>
 
                     <Button
-                        className={'w-full'}
+                        className={'w-full py-6'}
                         type="submit"
                         label="Sign In"
                         isLoading={isPending}

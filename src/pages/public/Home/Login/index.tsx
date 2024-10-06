@@ -78,6 +78,7 @@ export default function Login() {
                             control={control}
                             label="Remember me"
                             name="remember"
+                            className="bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black placeholder-gray-500"
                         />
                         <Button
                             type="button"

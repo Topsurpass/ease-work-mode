@@ -27,7 +27,6 @@ export default function LeftProfileSection() {
                     </p>
                 </CardContent>
             </Card>
-
             <Card className="max-w-lg mx-auto shadow-lg">
                 <CardHeader>
                     <CardTitle>Skills</CardTitle>
@@ -44,7 +43,6 @@ export default function LeftProfileSection() {
                     </ul>
                 </CardContent>
             </Card>
-
             <Card className="max-w-lg mx-auto shadow-lg">
                 <CardHeader>
                     <CardTitle>Certifications</CardTitle>
@@ -60,7 +58,6 @@ export default function LeftProfileSection() {
                     </ul>
                 </CardContent>
             </Card>
-
             <Card className="max-w-lg mx-auto shadow-lg">
                 <CardHeader>
                     <CardTitle>Testimonials</CardTitle>
