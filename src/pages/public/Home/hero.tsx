@@ -1,4 +1,4 @@
-import { IoIosSearch } from 'react-icons/io';
+import Search from '@/pages/User/Dashboard/search';
 
 export default function Hero() {
     return (
@@ -13,16 +13,7 @@ export default function Hero() {
                     largest remote work community in the world with 4.5M
                     visitors.
                 </p>
-                <div className="mt-8 flex justify-center">
-                    <div className="relative w-full max-w-lg">
-                        <input
-                            type="text"
-                            placeholder="Search for jobs..."
-                            className="w-full px-5 py-3 rounded-lg text-gray-700 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-                        />
-                        <IoIosSearch className="absolute right-3 top-3 w-6 h-6 text-gray-500" />
-                    </div>
-                </div>
+                <Search />
             </div>
         </section>
     );
