@@ -61,7 +61,7 @@ export default function EmployerLogin() {
                             icon={<Mail size={18} />}
                             iconPosition="left"
                             placeholder="Enter your email address"
-                            className="w-full rounded-md border py-3 pl-8"
+                            className="w-full px-5 py-3 pl-8 rounded-lg text-gray-900 bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black placeholder-gray-500"
                         />
                     </div>
                     <div>
@@ -74,7 +74,7 @@ export default function EmployerLogin() {
                             onIconClick={() => handleShowPassword()}
                             type={showPassword ? 'text' : 'password'}
                             showLeftIcon={false}
-                            className="w-full rounded-md border px-2 py-3"
+                            className="w-full px-2 py-3 rounded-lg text-gray-900 bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black placeholder-gray-500"
                         />
                     </div>
 
