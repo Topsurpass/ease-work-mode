@@ -6,15 +6,27 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { JOBS } from '@/data/job-list-data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import Search from '@/pages/User/Dashboard/search';
+import useGetJobs from '@/api/jobs/use-get-jobs';
+import { SkeletonListJob, SkeletonJobDecription } from '@/components/skeleton';
+import { JobCardProps } from '@/types/jobs';
+import { formatDateTime } from '@/utils/helpers';
 
 export default function JobListing() {
-    const [selectedJob, setSelectedJob] = useState(JOBS[0]);
+    const { data, isLoading } = useGetJobs();
+    const [selectedJob, setSelectedJob] = useState<JobCardProps | undefined>(
+        undefined
+    );
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (data && data.length > 0) {
+            setSelectedJob(data[0]);
+        }
+    }, [data]);
 
     return (
         <section className="flex flex-col py-20 border-2 w-full">
@@ -26,9 +38,10 @@ export default function JobListing() {
                             Recent Jobs
                         </p>
                     </div>
-                    {JOBS.map((job, idx) => (
+                    {isLoading && <SkeletonListJob size={6} />}
+                    {data?.map((job: JobCardProps, idx: number) => (
                         <Card
-                            className={`max-w-lg mx-auto shadow-lg cursor-pointer ${selectedJob === job ? 'border-blue-500' : ''}`}
+                            className={`w-full md:max-w-lg mx-auto shadow-lg md:w-full cursor-pointer ${selectedJob === job ? 'border-blue-500' : ''}`}
                             key={idx}
                             onClick={() => setSelectedJob(job)}
                         >
@@ -57,7 +70,6 @@ export default function JobListing() {
                                 </CardDescription>
                                 <CardDescription className="font-semibold">
                                     <p>{`${job.type} / ${job.location}`}</p>
-
                                     <p>Pay range: {`${job.pay}`}</p>
                                 </CardDescription>
                             </CardHeader>
@@ -66,12 +78,10 @@ export default function JobListing() {
                                     {job.shortRoleDescription}
                                 </p>
                             </CardContent>
-
                             <CardFooter className="flex justify-between items-center border-t pt-4">
                                 <p className="text-gray-500 text-sm">
-                                    {job.posted}
+                                    {`Posted on ${formatDateTime(job.posted)}`}
                                 </p>
-
                                 <Button
                                     label="Details"
                                     size="lg"
@@ -84,7 +94,7 @@ export default function JobListing() {
                     ))}
                 </section>
 
-                {selectedJob && (
+                {selectedJob ? (
                     <aside className="hidden md:block sticky top-28 h-[80vh] overflow-y-auto">
                         <div className="text-left mb-4 sticky block">
                             <p className="text-gray-600 text-xl font-semibold">
@@ -176,7 +186,7 @@ export default function JobListing() {
                             </CardContent>
                             <CardFooter className="flex justify-between items-center border-t pt-4">
                                 <p className="text-gray-500 text-sm">
-                                    {selectedJob.posted}
+                                    {`Posted on ${formatDateTime(selectedJob.posted)}`}
                                 </p>
                                 <Button
                                     label="Apply"
@@ -187,6 +197,8 @@ export default function JobListing() {
                             </CardFooter>
                         </Card>
                     </aside>
+                ) : (
+                    isLoading && <SkeletonJobDecription size={1} />
                 )}
             </div>
         </section>

@@ -12,4 +12,4 @@ export type JobCardProps = {
     methodOfApplication: string;
     deadline: string;
     posted: string;
-}[];
+};

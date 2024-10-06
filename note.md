@@ -9,29 +9,29 @@ import NotificationCard from './notification card';
 import { cn } from '@/lib/utils';
 
 export default function Profile() {
-    const [jobs] = useState([
-        {
-            id: 1,
-            title: 'Software Engineer',
-            company: 'TechCorp',
-            location: 'Remote',
-            applied: false,
-        },
-        {
-            id: 2,
-            title: 'Data Analyst',
-            company: 'DataVision',
-            location: 'Lagos, Nigeria',
-            applied: true,
-        },
-        {
-            id: 3,
-            title: 'Frontend Developer',
-            company: 'WebSolutions',
-            location: 'Abuja, Nigeria',
-            applied: false,
-        },
-    ]);
+const [jobs] = useState([
+{
+id: 1,
+title: 'Software Engineer',
+company: 'TechCorp',
+location: 'Remote',
+applied: false,
+},
+{
+id: 2,
+title: 'Data Analyst',
+company: 'DataVision',
+location: 'Lagos, Nigeria',
+applied: true,
+},
+{
+id: 3,
+title: 'Frontend Developer',
+company: 'WebSolutions',
+location: 'Abuja, Nigeria',
+applied: false,
+},
+]);
 
     const [notifications] = useState([
         {
@@ -161,4 +161,5 @@ export default function Profile() {
             </div>
         </div>
     );
+
 }
