@@ -6,6 +6,8 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import SheetDiv from '@/components/sheet';
+import Button from '@/components/ui/button';
 
 export default function RightProfile() {
     return (
@@ -37,7 +39,6 @@ export default function RightProfile() {
                     </div>
                 </CardContent>
             </Card>
-
             <Card className=" mx-auto shadow-lg">
                 <CardHeader className="pb-4 border-b">
                     <CardTitle>Work History</CardTitle>
@@ -62,7 +63,6 @@ export default function RightProfile() {
                     </div>
                 </CardContent>
             </Card>
-
             <Card className="mx-auto shadow-lg">
                 <CardHeader className="pb-4 border-b">
                     <CardTitle>Employment History</CardTitle>
@@ -85,6 +85,14 @@ export default function RightProfile() {
                     </ul>
                 </CardContent>
             </Card>
+            <SheetDiv
+                title="Edit Profile"
+                openButton={<Button label="Edit Profile" />}
+                description=" Make changes to your profile and get to see the
+                            update in real time."
+                contentClass="w-full md:w-full"
+                submitButton={<Button type="submit" label="Save changes" />}
+            />
         </div>
     );
 }

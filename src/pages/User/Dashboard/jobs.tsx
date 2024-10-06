@@ -14,6 +14,10 @@ import useGetJobs from '@/api/jobs/use-get-jobs';
 import { SkeletonListJob, SkeletonJobDecription } from '@/components/skeleton';
 import { JobCardProps } from '@/types/jobs';
 import { formatDateTime } from '@/utils/helpers';
+import DropDownMenu from '@/components/dropdown-menu';
+import { Bookmark } from 'lucide-react';
+import { Ban } from 'lucide-react';
+import { Flag } from 'lucide-react';
 
 export default function JobListing() {
     const { data, isLoading } = useGetJobs();
@@ -27,6 +31,21 @@ export default function JobListing() {
             setSelectedJob(data[0]);
         }
     }, [data]);
+
+    const menuData = [
+        {
+            icon: <Bookmark />,
+            label: 'Save',
+        },
+        {
+            icon: <Ban />,
+            label: 'Not Interested',
+        },
+        {
+            icon: <Flag />,
+            label: 'Report',
+        },
+    ];
 
     return (
         <section className="flex flex-col py-20 border-2 w-full">
@@ -50,20 +69,26 @@ export default function JobListing() {
                                     <CardTitle className="text-lg font-semibold">
                                         {job.title}
                                     </CardTitle>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        className="h-6 w-6 text-muted-foreground"
-                                    >
-                                        <circle cx="12" cy="6" r="2" />
-                                        <circle cx="12" cy="12" r="2" />
-                                        <circle cx="12" cy="18" r="2" />
-                                    </svg>
+                                    <DropDownMenu
+                                        dropMenuIcon={
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                className="h-6 w-6 text-muted-foreground"
+                                            >
+                                                <circle cx="12" cy="6" r="2" />
+                                                <circle cx="12" cy="12" r="2" />
+                                                <circle cx="12" cy="18" r="2" />
+                                            </svg>
+                                        }
+                                        menuClassName="-ml-44 w-48 py-5 font-bold"
+                                        menuOptions={menuData}
+                                    />
                                 </div>
                                 <CardDescription className="font-semibold">
                                     {job.company}
