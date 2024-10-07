@@ -1,4 +1,5 @@
 export type JobCardProps = {
+    id?: string;
     title: string;
     company: string;
     type: string;

@@ -13,13 +13,15 @@ import Search from '@/pages/User/Dashboard/search';
 import useGetJobs from '@/api/jobs/use-get-jobs';
 import { SkeletonListJob, SkeletonJobDecription } from '@/components/skeleton';
 import { JobCardProps } from '@/types/jobs';
-import { formatDateTime } from '@/utils/helpers';
 import DropDownMenu from '@/components/dropdown-menu';
 import { Bookmark } from 'lucide-react';
 import { Ban } from 'lucide-react';
 import { Flag } from 'lucide-react';
 
-export default function JobListing() {
+type JobListingProp = {
+    viewDetailsPath: string;
+};
+export default function JobListing({ viewDetailsPath }: JobListingProp) {
     const { data, isLoading } = useGetJobs();
     const [selectedJob, setSelectedJob] = useState<JobCardProps | undefined>(
         undefined
@@ -105,14 +107,16 @@ export default function JobListing() {
                             </CardContent>
                             <CardFooter className="flex justify-between items-center border-t pt-4">
                                 <p className="text-gray-500 text-sm">
-                                    {`Posted on ${formatDateTime(job.posted)}`}
+                                    {`Posted on ${new Date(job.posted).toLocaleDateString()}`}
                                 </p>
                                 <Button
                                     label="Details"
                                     size="lg"
                                     type="button"
                                     className="flex md:hidden"
-                                    onClick={() => navigate('/job/:id')}
+                                    onClick={() =>
+                                        navigate(`${viewDetailsPath}/${job.id}`)
+                                    }
                                 />
                             </CardFooter>
                         </Card>
@@ -132,20 +136,6 @@ export default function JobListing() {
                                     <CardTitle className="text-xl font-bold">
                                         {selectedJob.title}
                                     </CardTitle>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        className="h-6 w-6 text-muted-foreground"
-                                    >
-                                        <circle cx="12" cy="6" r="2" />
-                                        <circle cx="12" cy="12" r="2" />
-                                        <circle cx="12" cy="18" r="2" />
-                                    </svg>
                                 </div>
                                 <CardDescription className="font-semibold">
                                     {selectedJob.company}
@@ -158,7 +148,7 @@ export default function JobListing() {
                             <CardContent className="space-y-4 pt-3">
                                 <div className="flex flex-col gap-3">
                                     <div>
-                                        <h3 className="font-semibold text-lg ">
+                                        <h3 className="font-semibold text-lg text-blue-700">
                                             About Company
                                         </h3>
                                         <p className="text-gray-700">
@@ -166,7 +156,7 @@ export default function JobListing() {
                                         </p>
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-lg ">
+                                        <h3 className="font-semibold text-lg text-blue-700">
                                             Full Role Description
                                         </h3>
                                         <p className="text-gray-700">
@@ -174,7 +164,7 @@ export default function JobListing() {
                                         </p>
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-lg ">
+                                        <h3 className="font-semibold text-lg text-blue-700">
                                             Key Responsibilities
                                         </h3>
                                         <p className="text-gray-700">
@@ -182,7 +172,7 @@ export default function JobListing() {
                                         </p>
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-lg ">
+                                        <h3 className="font-semibold text-lg text-blue-700">
                                             Qualification and Experience
                                         </h3>
                                         <p className="text-gray-700">
@@ -192,7 +182,7 @@ export default function JobListing() {
                                         </p>
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-lg ">
+                                        <h3 className="font-semibold text-lg text-blue-700">
                                             Method of Application
                                         </h3>
                                         <p className="text-gray-700">
@@ -200,7 +190,7 @@ export default function JobListing() {
                                         </p>
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-lg ">
+                                        <h3 className="font-semibold text-lg text-blue-700">
                                             Application Deadline
                                         </h3>
                                         <p className="text-gray-700">
@@ -211,7 +201,7 @@ export default function JobListing() {
                             </CardContent>
                             <CardFooter className="flex justify-between items-center border-t pt-4">
                                 <p className="text-gray-500 text-sm">
-                                    {`Posted on ${formatDateTime(selectedJob.posted)}`}
+                                    {`Posted on ${new Date(selectedJob.posted).toLocaleDateString()}`}
                                 </p>
                                 <Button
                                     label="Apply"

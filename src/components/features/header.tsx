@@ -1,23 +1,58 @@
-import { NavLink } from 'react-router-dom';
-import { USER_DASHBOARD_MENU } from '@/routes/menu-list';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import useMobileMenu from '@/hooks/useMobileMenu';
 import { IoMenuOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
+import { LogOut } from 'lucide-react';
+import useAuthStore from '@/stores/user-store';
+import Button from '@/components/ui/button';
 
-export default function DashBoardHeader() {
+type AppHeaderProp = {
+    homePath: string;
+    desktopMenu: { path: string; title: string; icon?: JSX.Element }[];
+    mobileMenu: { path: string; title: string; icon?: JSX.Element }[];
+    logOutButton?: JSX.Element;
+    hasSignInButton?: boolean;
+    hasLogoutButton?: boolean;
+    signInPath?: string;
+    showDeskMenuIcon?: boolean;
+};
+
+export default function AppHeader({
+    homePath,
+    desktopMenu,
+    mobileMenu,
+    hasSignInButton = false,
+    signInPath,
+    hasLogoutButton = false,
+    showDeskMenuIcon = false,
+}: AppHeaderProp) {
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
+    const navigate = useNavigate();
+    const userStore = useAuthStore((state) => state);
+    const handleLogout = () => {
+        userStore.reset();
+    };
+
     return (
         <header className="fixed top-0 left-0 right-0 bg-white shadow-md h-20 px-5 flex items-center justify-between z-50">
             <NavLink
-                to="/dashboard"
+                to={homePath}
                 className="text-2xl font-bold text-blue-600 hover:text-blue-600"
             >
                 EaseWork
             </NavLink>
 
             <nav className="hidden md:flex items-center gap-6">
-                {USER_DASHBOARD_MENU.map((menu, idx) => (
+                {hasSignInButton && signInPath && (
+                    <Button
+                        label="Sign in"
+                        size="lg"
+                        type="button"
+                        onClick={() => navigate(signInPath)}
+                    />
+                )}
+                {desktopMenu.map((menu, idx) => (
                     <NavLink
                         to={menu.path}
                         key={idx}
@@ -33,10 +68,17 @@ export default function DashBoardHeader() {
                     >
                         <p className="flex gap-1">
                             {menu.title}
-                            {menu.icon}
+                            {showDeskMenuIcon && menu.icon}
                         </p>
                     </NavLink>
                 ))}
+
+                {hasLogoutButton && (
+                    <LogOut
+                        className="cursor-pointer text-gray-600"
+                        onClick={handleLogout}
+                    />
+                )}
             </nav>
             <div className="md:hidden">
                 {isMobileMenuOpen ? (
@@ -62,7 +104,7 @@ export default function DashBoardHeader() {
                 )}
             >
                 <ul className="flex flex-col gap-4">
-                    {USER_DASHBOARD_MENU.map((menu, idx) => (
+                    {mobileMenu.map((menu, idx) => (
                         <li key={idx}>
                             <NavLink
                                 to={menu.path}
@@ -83,6 +125,15 @@ export default function DashBoardHeader() {
                             </NavLink>
                         </li>
                     ))}
+                    {hasLogoutButton && (
+                        <div className="flex gap-2 transition-colors font-semibold">
+                            <LogOut
+                                className="cursor-pointer ml-4 text-gray-600"
+                                onClick={handleLogout}
+                            />
+                            <span className="text-gray-500">Logout</span>
+                        </div>
+                    )}
                 </ul>
             </div>
         </header>

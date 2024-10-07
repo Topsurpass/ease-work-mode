@@ -1,4 +1,5 @@
-import { MdAssuredWorkload } from 'react-icons/md';
+import { BriefcaseBusiness } from 'lucide-react';
+
 import { MenuList } from '@/types/menu';
 import { Bell, Briefcase, User, Settings } from 'lucide-react';
 
@@ -6,7 +7,7 @@ export const USER_MENU_HEADER: MenuList = [
     {
         path: '/home/employer',
         title: 'Employer/Post job',
-        icon: <MdAssuredWorkload />,
+        icon: <BriefcaseBusiness />,
     },
 ];
 
@@ -14,7 +15,7 @@ export const EMPLOYER_MENU_HEADER: MenuList = [
     {
         path: '/',
         title: 'Find Jobs',
-        icon: <MdAssuredWorkload />,
+        icon: <BriefcaseBusiness />,
     },
 ];
 
