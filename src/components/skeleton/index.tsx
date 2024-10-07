@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/card';
 
 export function SkeletonJob({ size }: { size: number }) {
-    // Array to generate skeleton loaders based on the size
     const skeletonArray = Array.from({ length: size });
 
     return (
@@ -101,6 +100,44 @@ export function SkeletonJobDecription({ size }: { size: number }) {
                     </CardHeader>
                     <CardContent className="space-y-4 pt-3 flex-grow">
                         <div className="h-40 bg-gray-300 rounded"></div>
+                        <div className="h-40 bg-gray-300 rounded"></div>
+                        <div className="h-20 bg-gray-300 rounded"></div>
+                    </CardContent>
+                    <CardFooter className="flex justify-between items-center border-t pt-4">
+                        <div className="h-4 w-1/4 bg-gray-300 rounded"></div>
+                        <div className="h-8 w-24 bg-gray-300 rounded ml-auto"></div>
+                    </CardFooter>
+                </Card>
+            ))}
+        </section>
+    );
+}
+
+export function SkeletonJobDetails({ size }: { size: number }) {
+    const skeletonArray = Array.from({ length: size });
+    return (
+        <section className="flex flex-col items-center justify-center px-5 ">
+            {skeletonArray.map((_, idx) => (
+                <Card
+                    className="max-w-4xl w-full shadow-lg flex flex-col animate-pulse my-24"
+                    key={idx}
+                >
+                    <CardHeader className="pb-4 border-b">
+                        <div className="flex flex-row items-center justify-between">
+                            <CardTitle className="h-6 w-3/4 bg-gray-300 rounded mb-2"></CardTitle>
+                            <div className="h-10 w-28 bg-gray-300 rounded-md"></div>
+                        </div>
+                        <div>
+                            <CardDescription className="h-4 w-1/2 bg-gray-300 rounded mb-2"></CardDescription>
+                            <CardDescription className="h-4 w-3/4 bg-gray-300 rounded">
+                                <p className="h-3 w-full bg-gray-300 rounded"></p>
+                            </CardDescription>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4 pt-3 flex-grow">
+                        <div className="h-40 bg-gray-300 rounded"></div>
+                        <div className="h-40 bg-gray-300 rounded"></div>
+                        <div className="h-20 bg-gray-300 rounded"></div>
                         <div className="h-40 bg-gray-300 rounded"></div>
                         <div className="h-20 bg-gray-300 rounded"></div>
                     </CardContent>

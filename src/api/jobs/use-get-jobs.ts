@@ -8,12 +8,16 @@ interface IParameters {
 
 const url = `/job`;
 
-export default function useGetJobs(requestParams: IParameters = {}) {
+export default function useGetJobs(
+    id?: string | number,
+    requestParams: IParameters = {}
+) {
     return useQuery({
-        queryKey: [QueryKeys.GET_JOBS, requestParams],
+        queryKey: [QueryKeys.GET_JOBS, id, requestParams],
         queryFn: async () => {
             try {
-                const res = await authHTTP.get(url, {
+                const endpoint = id ? `${url}/${id}` : url;
+                const res = await authHTTP.get(endpoint, {
                     params: {
                         ...requestParams,
                     },

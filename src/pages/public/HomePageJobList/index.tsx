@@ -1,10 +1,9 @@
+import ShowDetails from '@/components/features/jobDetails';
 import { USER_MENU_HEADER } from '@/routes/menu-list';
 import AppHeader from '@/components/features/header';
-import Footer from '@/components/features/footer';
-import JobListing from '@/components/features/job-listings';
-export default function HomePage() {
+export default function HomeJobDetails() {
     return (
-        <div className="min-h-screen w-full flex flex-col justify-center items-center">
+        <section className="min-h-screen">
             <AppHeader
                 homePath="/"
                 desktopMenu={USER_MENU_HEADER}
@@ -12,8 +11,7 @@ export default function HomePage() {
                 hasSignInButton={true}
                 signInPath="/login"
             />
-            <JobListing viewDetailsPath="job" />
-            <Footer />
-        </div>
+            <ShowDetails returnPath="/" applyPath="/dashboard/job/:id/apply" />
+        </section>
     );
 }
