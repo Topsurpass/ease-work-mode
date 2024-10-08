@@ -17,7 +17,7 @@ import UserDashboard from '@/pages/User/Dashboard';
 import Applications from '@/pages/User/Applications';
 import EmployerDashBoard from '@/pages/Employer';
 import HomeJobDetails from '@/pages/public/HomePageJobList';
-import DashboardJobDetails from '@/pages/User/DashboardJoblList';
+import DashboardJobDetails from '@/pages/User/JobDetails';
 
 const routeConfig = [
     {

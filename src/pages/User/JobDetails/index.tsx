@@ -1,9 +1,9 @@
-import ShowDetails from '@/components/features/jobDetails';
+import MobileViewJobDetails from '@/components/features/mobileViewJobDetails';
 
 export default function DashboardJobDetails() {
     return (
         <section className="min-h-screen">
-            <ShowDetails
+            <MobileViewJobDetails
                 returnPath="/dashboard"
                 applyPath="/dashboard/job/:id/apply"
             />

@@ -5,10 +5,10 @@ import { IoMenuOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import { LogOut } from 'lucide-react';
 import useAuthStore from '@/stores/user-store';
-import Button from '@/components/ui/button';
+//import Button from '@/components/ui/button';
 
 type AppHeaderProp = {
-    homePath: string;
+    homePath?: string;
     desktopMenu: { path: string; title: string; icon?: JSX.Element }[];
     mobileMenu: { path: string; title: string; icon?: JSX.Element }[];
     logOutButton?: JSX.Element;
@@ -19,16 +19,16 @@ type AppHeaderProp = {
 };
 
 export default function AppHeader({
-    homePath,
+    homePath = '/',
     desktopMenu,
     mobileMenu,
-    hasSignInButton = false,
-    signInPath,
+    //hasSignInButton = false,
+    //signInPath,
     hasLogoutButton = false,
     showDeskMenuIcon = false,
 }: AppHeaderProp) {
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const userStore = useAuthStore((state) => state);
     const handleLogout = () => {
         userStore.reset();
@@ -44,14 +44,14 @@ export default function AppHeader({
             </NavLink>
 
             <nav className="hidden md:flex items-center gap-6">
-                {hasSignInButton && signInPath && (
+                {/*{hasSignInButton && signInPath && (
                     <Button
                         label="Sign in"
                         size="lg"
                         type="button"
                         onClick={() => navigate(signInPath)}
                     />
-                )}
+                )}*/}
                 {desktopMenu.map((menu, idx) => (
                     <NavLink
                         to={menu.path}
@@ -126,13 +126,13 @@ export default function AppHeader({
                         </li>
                     ))}
                     {hasLogoutButton && (
-                        <div className="flex gap-2 transition-colors font-semibold">
-                            <LogOut
-                                className="cursor-pointer ml-4 text-gray-600"
-                                onClick={handleLogout}
-                            />
+                        <li
+                            className="flex gap-2 transition-colors font-semibold cursor-pointer"
+                            onClick={handleLogout}
+                        >
+                            <LogOut className=" ml-4 text-gray-600" />
                             <span className="text-gray-500">Logout</span>
-                        </div>
+                        </li>
                     )}
                 </ul>
             </div>

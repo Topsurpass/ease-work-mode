@@ -19,7 +19,7 @@ type ShowDetailsProps = {
     applyPath: string;
 };
 
-export default function ShowDetails({
+export default function MobileViewJobDetails({
     returnPath,
     applyPath,
 }: ShowDetailsProps) {
