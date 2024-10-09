@@ -6,6 +6,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 export function SkeletonJob({ size }: { size: number }) {
     const skeletonArray = Array.from({ length: size });
@@ -125,7 +126,7 @@ export function SkeletonJobDetails({ size }: { size: number }) {
                     <CardHeader className="pb-4 border-b">
                         <div className="flex flex-row items-center justify-between">
                             <CardTitle className="h-6 w-3/4 bg-gray-300 rounded mb-2"></CardTitle>
-                            <div className="h-10 w-28 bg-gray-300 rounded-md"></div>
+                            <div className="md:h-10 md:w-28 h-8 w-8 bg-gray-300 rounded-md"></div>
                         </div>
                         <div>
                             <CardDescription className="h-4 w-1/2 bg-gray-300 rounded mb-2"></CardDescription>
@@ -150,3 +151,17 @@ export function SkeletonJobDetails({ size }: { size: number }) {
         </section>
     );
 }
+
+function Skeleton({
+    className,
+    ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+        <div
+            className={cn('animate-pulse rounded-md bg-muted', className)}
+            {...props}
+        />
+    );
+}
+
+export { Skeleton };

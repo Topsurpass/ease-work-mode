@@ -10,7 +10,7 @@ import {
 export default function LeftProfileSection() {
     return (
         <div className="col-span-2 md:col-span-1 space-y-8 ">
-            <Card className="max-w-lg mx-auto shadow-lg">
+            <Card className="mx-auto shadow-lg">
                 <CardHeader className="pb-4 border-b">
                     <CardTitle>About Me</CardTitle>
                     <CardDescription className="text-gray-700">
@@ -27,7 +27,7 @@ export default function LeftProfileSection() {
                     </p>
                 </CardContent>
             </Card>
-            <Card className="max-w-lg mx-auto shadow-lg">
+            <Card className="mx-auto shadow-lg">
                 <CardHeader>
                     <CardTitle>Skills</CardTitle>
                     <CardDescription className="text-gray-700 pb-4 border-b">
@@ -43,7 +43,7 @@ export default function LeftProfileSection() {
                     </ul>
                 </CardContent>
             </Card>
-            <Card className="max-w-lg mx-auto shadow-lg">
+            <Card className="mx-auto shadow-lg">
                 <CardHeader>
                     <CardTitle>Certifications</CardTitle>
                     <CardDescription className="text-gray-700 pb-4 border-b">
@@ -58,7 +58,7 @@ export default function LeftProfileSection() {
                     </ul>
                 </CardContent>
             </Card>
-            <Card className="max-w-lg mx-auto shadow-lg">
+            <Card className="mx-auto shadow-lg">
                 <CardHeader>
                     <CardTitle>Testimonials</CardTitle>
                     <CardDescription className="text-gray-700 pb-4 border-b">

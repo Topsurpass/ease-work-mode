@@ -11,7 +11,7 @@ export default function Employer() {
     return (
         <div className="min-h-screen w-full flex flex-col justify-center items-center">
             <AppHeader
-                homePath="/home/employer"
+                //homePath="/home/employer"
                 desktopMenu={EMPLOYER_MENU_HEADER}
                 mobileMenu={EMPLOYER_MENU_HEADER}
                 hasSignInButton={true}

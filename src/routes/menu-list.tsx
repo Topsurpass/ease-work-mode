@@ -1,21 +1,31 @@
 import { BriefcaseBusiness } from 'lucide-react';
 
 import { MenuList } from '@/types/menu';
-import { Bell, Briefcase, User, Settings } from 'lucide-react';
+import { Bell, Briefcase, User, Settings, Wallet, LogIn } from 'lucide-react';
 
 export const USER_MENU_HEADER: MenuList = [
     {
         path: '/home/employer',
-        title: 'Employer/Post job',
+        title: 'Post jobs',
         icon: <BriefcaseBusiness />,
+    },
+    {
+        path: '/login',
+        title: 'Job seeker login',
+        icon: <LogIn />,
     },
 ];
 
 export const EMPLOYER_MENU_HEADER: MenuList = [
     {
-        path: '/',
-        title: 'Find Jobs',
-        icon: <BriefcaseBusiness />,
+        path: '/product/pricing',
+        title: 'Pricing',
+        icon: <Wallet />,
+    },
+    {
+        path: '/employer/login',
+        title: 'Login as Employer',
+        icon: <LogIn />,
     },
 ];
 

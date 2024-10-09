@@ -1,4 +1,4 @@
-import ShowDetails from '@/components/features/jobDetails';
+import ShowDetails from '@/components/features/mobileViewJobDetails';
 import { USER_MENU_HEADER } from '@/routes/menu-list';
 import AppHeader from '@/components/features/header';
 export default function HomeJobDetails() {

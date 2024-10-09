@@ -6,7 +6,7 @@ export default function HomePage() {
     return (
         <div className="min-h-screen w-full flex flex-col justify-center items-center">
             <AppHeader
-                homePath="/"
+                //homePath="/"
                 desktopMenu={USER_MENU_HEADER}
                 mobileMenu={USER_MENU_HEADER}
                 hasSignInButton={true}
