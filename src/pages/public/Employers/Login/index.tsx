@@ -115,6 +115,16 @@ export default function EmployerLogin() {
                         </Link>
                     </p>
                 </div>
+                <div className="mt-6 text-center">
+                    <p className="text-gray-600">
+                        <Link
+                            to={'/home/employer'}
+                            className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
+                        >
+                            Return Home
+                        </Link>
+                    </p>
+                </div>
             </div>
             {isError && (
                 <div className="mt-2 flex items-center justify-center gap-2">

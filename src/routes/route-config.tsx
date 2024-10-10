@@ -18,6 +18,7 @@ import Applications from '@/pages/User/Applications';
 import EmployerDashBoard from '@/pages/Employer';
 import HomeJobDetails from '@/pages/public/HomePageJobList';
 import DashboardJobDetails from '@/pages/User/JobDetails';
+import ApplyNow from '@/pages/User/ApplyNow';
 
 const routeConfig = [
     {
@@ -91,6 +92,14 @@ const routeConfig = [
             {
                 path: 'dashboard/job/:id',
                 element: <DashboardJobDetails />,
+            },
+            {
+                path: 'dashboard/job/:id/apply',
+                element: <ApplyNow />,
+            },
+            {
+                path: '/job/:id/apply',
+                element: <ApplyNow />,
             },
         ],
     },

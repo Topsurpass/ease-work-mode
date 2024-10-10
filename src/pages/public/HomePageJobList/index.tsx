@@ -11,7 +11,7 @@ export default function HomeJobDetails() {
                 hasSignInButton={true}
                 signInPath="/login"
             />
-            <ShowDetails returnPath="/" applyPath="/dashboard/job/:id/apply" />
+            <ShowDetails returnPath="/" />
         </section>
     );
 }

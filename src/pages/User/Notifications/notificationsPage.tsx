@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
     CheckCircle,
-    Eye,
     Trash2,
     Bell,
     CalendarCheck,
@@ -74,10 +73,8 @@ export default function NotificationPage() {
                             }`}
                         >
                             <div className="flex items-center space-x-4">
-                                {/* Notification Icon */}
                                 <NotificationIcon type={notification.type} />
 
-                                {/* Notification Details */}
                                 <div>
                                     <p
                                         className={`font-medium ${notification.isRead ? 'text-gray-500' : 'text-gray-800'}`}
@@ -91,14 +88,6 @@ export default function NotificationPage() {
                             </div>
 
                             <div className="flex items-center space-x-3">
-                                <Eye
-                                    className="text-blue-500 hover:text-blue-700 cursor-pointer transition"
-                                    onClick={() =>
-                                        alert(
-                                            `View notification #${notification.id}`
-                                        )
-                                    }
-                                />
                                 {!notification.isRead && (
                                     <CheckCircle
                                         className="text-green-500 hover:text-green-700 cursor-pointer transition"

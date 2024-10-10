@@ -9,23 +9,19 @@ import {
 } from '@/components/ui/card';
 import Button from '@/components/ui/button';
 import { SkeletonJobDetails } from '@/components/skeleton';
-import useGetJobs from '@/api/jobs/use-get-jobs';
+import { useGetJobById } from '@/api/jobs/use-get-jobs';
 import { ArrowLeft } from 'lucide-react';
 import { useEffect } from 'react';
 import JobNotFound from './not-found';
 
 type ShowDetailsProps = {
     returnPath: string;
-    applyPath: string;
 };
 
-export default function MobileViewJobDetails({
-    returnPath,
-    applyPath,
-}: ShowDetailsProps) {
+export default function MobileViewJobDetails({ returnPath }: ShowDetailsProps) {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { data: job, isLoading, isError } = useGetJobs(id);
+    const { data: job, isLoading, isError } = useGetJobById(id);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -125,7 +121,7 @@ export default function MobileViewJobDetails({
                         label="Apply for this Job"
                         size="lg"
                         className="bg-blue-600 text-white hover:bg-blue-700"
-                        onClick={() => navigate(applyPath)}
+                        onClick={() => navigate('apply')}
                     />
                 </CardFooter>
             </Card>
