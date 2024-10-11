@@ -25,12 +25,12 @@ export default function JobDetailsModal() {
             title={`Job Details`}
             open={isModalOpen && EntityType.JOB_DETAILS === entity}
             handleClose={onModalClose}
-            size="full"
             description="View more information about jobs and apply."
+            headerClass="bg-gray-100 py-5 border"
         >
-            <section className="flex flex-col items-center justify-center px-5 mt-5">
-                <Card className="max-w-3xl w-full shadow-lg mb-10 rounded-lg border border-gray-200">
-                    <CardHeader className="pb-6 border-b border-gray-200 bg-gray-100 px-6 py-4">
+            <section className="flex flex-col items-center justify-center mt- w-full">
+                <Card className="w-full shadow-lg rounded-lg border border-gray-200">
+                    <CardHeader className="pb-6 border-b border-gray-200 bg-white px-6 py-4">
                         <div className="flex items-center justify-between">
                             <CardTitle className="text-xl font-bold text-gray-800">
                                 {data.title}
