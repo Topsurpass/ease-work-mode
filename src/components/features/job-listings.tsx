@@ -16,30 +16,26 @@ import { JobCardProps } from '@/types/jobs';
 import DropDownMenu from '@/components/dropdown-menu';
 import { Bookmark, Ban, Flag } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import useGlobalProvider from '@/hooks/use-global-provider';
+import { EntityType } from '@/types/enum';
 
-type JobListingProp = {
-    viewDetailsPath: string;
-};
-
-export default function JobListing({ viewDetailsPath }: JobListingProp) {
+export default function JobListing() {
     const { data, isLoading, fetchNextPage, hasNextPage } = useGetJobs();
+    const { onModalOpen } = useGlobalProvider();
     const [selectedJob, setSelectedJob] = useState<JobCardProps | undefined>(
         undefined
     );
     const navigate = useNavigate();
     const { ref: loadMoreRef, inView } = useInView();
 
-    // Fetch the next page when the loadMoreRef is in view
     useEffect(() => {
         if (inView && hasNextPage) {
             fetchNextPage();
         }
     }, [inView, fetchNextPage, hasNextPage]);
 
-    // Flatten the job data from the pages
     const jobs = data?.pages.flatMap((page) => page.data) || [];
 
-    // Set the first job as selected when jobs are loaded
     useEffect(() => {
         if (jobs.length > 0 && !selectedJob) {
             setSelectedJob(jobs[0]);
@@ -124,14 +120,16 @@ export default function JobListing({ viewDetailsPath }: JobListingProp) {
                                     size="lg"
                                     type="button"
                                     className="flex md:hidden"
-                                    onClick={() =>
-                                        navigate(`${viewDetailsPath}/${job.id}`)
-                                    }
+                                    onClick={() => {
+                                        onModalOpen({
+                                            data: selectedJob,
+                                            entity: EntityType.JOB_DETAILS,
+                                        });
+                                    }}
                                 />
                             </CardFooter>
                         </Card>
                     ))}
-                    {/* Load more ref to trigger fetching more data */}
                     {hasNextPage && (
                         <div ref={loadMoreRef} className="text-center py-4">
                             <SkeletonListJob size={3} />
@@ -139,7 +137,6 @@ export default function JobListing({ viewDetailsPath }: JobListingProp) {
                     )}
                 </section>
 
-                {/* Display skeleton loader when loading and no selected job */}
                 {isLoading && !selectedJob ? (
                     <SkeletonJobDecription size={1} />
                 ) : (
@@ -231,7 +228,7 @@ export default function JobListing({ viewDetailsPath }: JobListingProp) {
                                         type="button"
                                         onClick={() =>
                                             navigate(
-                                                `/job/${selectedJob.id}/apply`
+                                                `/dashboard/job/${selectedJob.id}/apply`
                                             )
                                         }
                                     />

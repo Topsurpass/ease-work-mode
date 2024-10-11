@@ -1,20 +1,6 @@
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-    CardFooter,
-} from '@/components/ui/card';
-import { ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
-type ShowDetailsProps = {
-    returnPath: string;
-};
-
-export default function JobNotFound({ returnPath }: ShowDetailsProps) {
-    const navigate = useNavigate();
-
+export default function JobNotFound() {
     return (
         <section className="flex flex-col items-center justify-center px-5 min-h-screen">
             <Card className="max-w-4xl w-full shadow-lg mt-24 mb-10">
@@ -29,12 +15,6 @@ export default function JobNotFound({ returnPath }: ShowDetailsProps) {
                         the ID is invalid.
                     </p>
                 </CardContent>
-                <CardFooter className="flex justify-between items-center border-t pt-4">
-                    <ArrowLeft
-                        className="cursor-pointer"
-                        onClick={() => navigate(returnPath)}
-                    />
-                </CardFooter>
             </Card>
         </section>
     );

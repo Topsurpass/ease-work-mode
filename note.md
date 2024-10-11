@@ -454,20 +454,20 @@ onPageChange(currentPage + 1);
     );
 
 };
-_____________________________________________________________________
 
+---
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer'; // Intersection observer hook
 import useGetJobs from '@/api/jobs/use-get-jobs';
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+Card,
+CardContent,
+CardDescription,
+CardFooter,
+CardHeader,
+CardTitle,
 } from '@/components/ui/card';
 import Button from '@/components/ui/button';
 import Search from '@/pages/User/Dashboard/search';
@@ -476,17 +476,17 @@ import DropDownMenu from '@/components/dropdown-menu';
 import { Bookmark, Ban, Flag } from 'lucide-react';
 
 type JobListingProp = {
-    viewDetailsPath: string;
+viewDetailsPath: string;
 };
 
 export default function JobListing({ viewDetailsPath }: JobListingProp) {
-    const {
-        data,
-        isLoading,
-        fetchNextPage, // Function to fetch the next page
-        hasNextPage, // Whether there are more pages to load
-        isFetchingNextPage,
-    } = useGetJobs();
+const {
+data,
+isLoading,
+fetchNextPage, // Function to fetch the next page
+hasNextPage, // Whether there are more pages to load
+isFetchingNextPage,
+} = useGetJobs();
 
     const [selectedJob, setSelectedJob] = useState(undefined);
     const navigate = useNavigate();
@@ -652,4 +652,5 @@ export default function JobListing({ viewDetailsPath }: JobListingProp) {
             </div>
         </section>
     );
+
 }
