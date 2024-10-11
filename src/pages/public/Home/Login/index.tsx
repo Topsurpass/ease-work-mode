@@ -36,7 +36,7 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
+        <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
             {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
 
             <div className="bg-white p-8 shadow-2xl rounded-2xl max-w-lg w-full">

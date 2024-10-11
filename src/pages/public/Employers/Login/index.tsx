@@ -41,7 +41,7 @@ export default function EmployerLogin() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
+        <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
             <div className="bg-white p-8 shadow-2xl rounded-2xl max-w-lg w-full">
                 <div className="flex flex-col justify-center items-center gap-2 mb-8">
                     <h2 className="text-3xl font-bold text-center text-blue-700">
