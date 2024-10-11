@@ -41,13 +41,16 @@ export default function EmployerLogin() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50">
-            {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
-
-            <div className="bg-white p-8 shadow-lg rounded-lg max-w-md w-full">
-                <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">
-                    Sign in to your account
-                </h2>
+        <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
+            <div className="bg-white p-8 shadow-2xl rounded-2xl max-w-lg w-full">
+                <div className="flex flex-col justify-center items-center gap-2 mb-8">
+                    <h2 className="text-3xl font-bold text-center text-blue-700">
+                        Welcome Back
+                    </h2>
+                    <p className="text-gray-600">
+                        Sign in to your employer account
+                    </p>
+                </div>
 
                 <form
                     onSubmit={handleSubmit(processForm)}
@@ -61,7 +64,7 @@ export default function EmployerLogin() {
                             icon={<Mail size={18} />}
                             iconPosition="left"
                             placeholder="Enter your email address"
-                            className="w-full px-5 py-3 pl-8 rounded-lg text-gray-900 bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black placeholder-gray-500"
+                            className="w-full px-8 py-3 rounded-lg text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 placeholder-gray-500"
                         />
                     </div>
                     <div>
@@ -73,30 +76,29 @@ export default function EmployerLogin() {
                             placeholder="Enter your password"
                             onIconClick={() => handleShowPassword()}
                             type={showPassword ? 'text' : 'password'}
-                            showLeftIcon={false}
-                            className="w-full px-2 py-3 rounded-lg text-gray-900 bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black placeholder-gray-500"
+                            className="w-full px-8 py-3 rounded-lg text-gray-900 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300 border border-gray-300 placeholder-gray-500"
                         />
                     </div>
 
-                    <div className="flex items-center justify-between w-full bg-white">
+                    <div className="flex items-center justify-between w-full">
                         <CheckboxField
                             control={control}
                             label="Remember me"
                             name="remember"
-                            className="bg-white shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 border-2 border-black placeholder-gray-500"
+                            className="text-gray-700 bg-white"
                         />
                         <Button
                             type="button"
                             onClick={() => navigate('/forgot-password')}
                             variant="link"
-                            className="text-gray-700"
+                            className="text-blue-600 hover:text-blue-500"
                         >
                             Forget Password?
                         </Button>
                     </div>
 
                     <Button
-                        className={'w-full py-6'}
+                        className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg shadow-md"
                         type="submit"
                         label="Sign In"
                         isLoading={isPending}
@@ -106,32 +108,29 @@ export default function EmployerLogin() {
 
                 <div className="mt-6 text-center">
                     <p className="text-gray-600">
-                        Don't have an account?
+                        Don’t have an account?{' '}
                         <Link
                             to={'/sign-up'}
-                            className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
+                            className="font-medium text-blue-600 hover:text-blue-500"
                         >
                             Sign up
                         </Link>
                     </p>
                 </div>
-                <div className="mt-6 text-center">
-                    <p className="text-gray-600">
-                        <Link
-                            to={'/home/employer'}
-                            className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
-                        >
-                            Return Home
-                        </Link>
-                    </p>
+                <div className="mt-4 text-center">
+                    <Link
+                        to={'/home/employer'}
+                        className="font-medium text-blue-600 hover:text-blue-500"
+                    >
+                        Return Home
+                    </Link>
                 </div>
             </div>
+
             {isError && (
-                <div className="mt-2 flex items-center justify-center gap-2">
-                    <AlertCircle size={20} color="red" />
-                    <span className="text-red-500">
-                        {error?.response?.data?.message as any}
-                    </span>
+                <div className="mt-4 text-center text-red-600 flex items-center justify-center">
+                    <AlertCircle size={20} className="mr-2" />
+                    <span>{error?.response?.data?.message as any}</span>
                 </div>
             )}
         </div>
