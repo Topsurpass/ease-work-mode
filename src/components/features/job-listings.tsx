@@ -122,9 +122,10 @@ export default function JobListing() {
                                     className="flex md:hidden"
                                     onClick={() => {
                                         onModalOpen({
-                                            data: selectedJob,
+                                            data: job,
                                             entity: EntityType.JOB_DETAILS,
                                         });
+                                        setSelectedJob(job);
                                     }}
                                 />
                             </CardFooter>
