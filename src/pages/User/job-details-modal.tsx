@@ -25,7 +25,6 @@ export default function JobDetailsModal() {
             title={`Job Details`}
             open={isModalOpen && EntityType.JOB_DETAILS === entity}
             handleClose={onModalClose}
-            size="full"
             description="View more information about jobs and apply."
             headerClass="bg-gray-100 py-5 border"
         >

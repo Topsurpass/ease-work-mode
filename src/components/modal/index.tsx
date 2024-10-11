@@ -25,7 +25,7 @@ const panelVariants = cva(
                 '3xl': 'max-w-3xl',
                 '4xl': 'max-w-4xl',
                 xlarge: 'max-w-5xl',
-                full: 'w-full h-full',
+                full: 'max-w-7xl',
             },
         },
         defaultVariants: {
@@ -75,7 +75,6 @@ export default function Modal({
     headerClass = '',
     titleClass = '',
     descriptionClass = '',
-    size = 'full',
     backdrop = false,
     open,
     handleClose,
