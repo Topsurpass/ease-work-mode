@@ -25,7 +25,7 @@ const panelVariants = cva(
                 '3xl': 'max-w-3xl',
                 '4xl': 'max-w-4xl',
                 xlarge: 'max-w-5xl',
-                full: 'max-w-7xl',
+                full: 'w-full h-full',
             },
         },
         defaultVariants: {
@@ -75,7 +75,7 @@ export default function Modal({
     headerClass = '',
     titleClass = '',
     descriptionClass = '',
-    size,
+    size = 'full',
     backdrop = false,
     open,
     handleClose,
@@ -91,7 +91,11 @@ export default function Modal({
 
     return (
         <Transition appear show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-[50]" onClose={hasBackdrop}>
+            <Dialog
+                as="div"
+                className="fixed inset-0 z-50 flex items-center justify-center"
+                onClose={hasBackdrop}
+            >
                 <TransitionChild
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -101,85 +105,82 @@ export default function Modal({
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    {/* bg-opacity controls the background backdrop density/opacity */}
-                    <div
-                        className={cn(
-                            'fixed inset-0 bg-black/80 bg-opacity-70'
-                        )}
-                    />
+                    {/* Background overlay */}
+                    <div className="fixed inset-0 bg-black bg-opacity-70" />
                 </TransitionChild>
-                <div className="fixed inset-0 overflow-y-auto">
-                    <div className="flex min-h-full items-center justify-center px-10 py-4 text-center">
-                        <TransitionChild
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
+
+                <div className="fixed inset-0 w-full h-full flex items-center justify-center">
+                    <TransitionChild
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0 scale-95"
+                        enterTo="opacity-100 scale-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100 scale-100"
+                        leaveTo="opacity-0 scale-95"
+                    >
+                        {/* Dialog Panel */}
+                        <DialogPanel
+                            className={cn(
+                                'w-full h-full bg-white text-foreground', // Take full width and height
+                                className
+                            )}
                         >
-                            <DialogPanel
-                                className={cn(
-                                    'bg-background text-foreground',
-                                    panelVariants({
-                                        size,
-                                    }),
-                                    className
-                                )}
-                            >
-                                <section>
-                                    <header
-                                        className={cn(
-                                            'mb-3 flex justify-between px-4 pt-4',
-                                            headerClass
-                                        )}
-                                    >
-                                        <div className="flex flex-col justify-center">
-                                            {title && (
-                                                <DialogTitle
-                                                    className={cn(
-                                                        'flex items-center gap-2 text-2xl font-bold',
-                                                        titleClass
-                                                    )}
-                                                >
-                                                    {setIcon}
-                                                    {title}
-                                                </DialogTitle>
-                                            )}
-                                            {description && (
-                                                <Description
-                                                    className={cn(
-                                                        'text-sm text-gray-500',
-                                                        descriptionClass
-                                                    )}
-                                                >
-                                                    {description}
-                                                </Description>
-                                            )}
-                                        </div>
-                                        {showCloseButton && (
-                                            <Button
-                                                type="button"
-                                                aria-label="close"
-                                                onClick={handleClose}
-                                                className="rounded-full border border-gray-300"
-                                                variant="outline"
-                                                size="icon"
+                            <section className="h-full w-full flex flex-col">
+                                {/* Header */}
+                                <header
+                                    className={cn(
+                                        'mb-3 flex justify-between px-4 pt-4',
+                                        headerClass
+                                    )}
+                                >
+                                    <div className="flex flex-col justify-center">
+                                        {title && (
+                                            <DialogTitle
+                                                className={cn(
+                                                    'flex items-center gap-2 text-2xl font-bold',
+                                                    titleClass
+                                                )}
                                             >
-                                                <X
-                                                    size={20}
-                                                    className="cursor-pointer"
-                                                />
-                                            </Button>
+                                                {setIcon}
+                                                {title}
+                                            </DialogTitle>
                                         )}
-                                    </header>
-                                    {/* <div className="scrollbar-thin scrollbar-thumb-blue-500 custom-max-height px-2 py-5"> */}
+                                        {description && (
+                                            <Description
+                                                className={cn(
+                                                    'text-sm text-gray-500',
+                                                    descriptionClass
+                                                )}
+                                            >
+                                                {description}
+                                            </Description>
+                                        )}
+                                    </div>
+                                    {showCloseButton && (
+                                        <Button
+                                            type="button"
+                                            aria-label="close"
+                                            onClick={handleClose}
+                                            className="rounded-full border border-gray-300"
+                                            variant="outline"
+                                            size="icon"
+                                        >
+                                            <X
+                                                size={20}
+                                                className="cursor-pointer"
+                                            />
+                                        </Button>
+                                    )}
+                                </header>
+
+                                {/* Modal content */}
+                                <div className="flex-grow overflow-auto p-4">
                                     {children}
-                                </section>
-                            </DialogPanel>
-                        </TransitionChild>
-                    </div>
+                                </div>
+                            </section>
+                        </DialogPanel>
+                    </TransitionChild>
                 </div>
             </Dialog>
         </Transition>
