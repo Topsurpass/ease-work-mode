@@ -1,6 +1,6 @@
 import { cn } from '@/utils/tw-merge';
 
-export default function LoadingSpinner({ className }: { className: string }) {
+export default function LoadingSpinner({ className }: { className?: string }) {
     return (
         <svg
             aria-hidden="true"

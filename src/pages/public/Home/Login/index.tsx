@@ -98,7 +98,6 @@ export default function Login() {
                         loadingText="Please wait"
                     />
                 </form>
-
                 <div className="mt-6 text-center">
                     <p className="text-gray-600">
                         Don't have an account?
@@ -107,6 +106,17 @@ export default function Login() {
                             className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
                         >
                             Sign up
+                        </Link>
+                    </p>
+                </div>
+
+                <div className="mt-6 text-center">
+                    <p className="text-gray-600">
+                        <Link
+                            to={'/'}
+                            className="font-medium text-blue-600 hover:text-blue-500 hover:underline"
+                        >
+                            Return Home
                         </Link>
                     </p>
                 </div>

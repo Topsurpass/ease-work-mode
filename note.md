@@ -296,12 +296,12 @@ info.getValue() === 'Rejected'
 ? 'text-yellow-600'
 : 'text-blue-600'
 }`}
->
-{info.getValue()}
-</span>
-),
-}),
-];
+
+> {info.getValue()}
+> </span>
+> ),
+> }),
+> ];
 
 // Main Component
 export default function JobApplication() {
@@ -454,3 +454,203 @@ onPageChange(currentPage + 1);
     );
 
 };
+
+---
+
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer'; // Intersection observer hook
+import useGetJobs from '@/api/jobs/use-get-jobs';
+import {
+Card,
+CardContent,
+CardDescription,
+CardFooter,
+CardHeader,
+CardTitle,
+} from '@/components/ui/card';
+import Button from '@/components/ui/button';
+import Search from '@/pages/User/Dashboard/search';
+import { SkeletonListJob, SkeletonJobDecription } from '@/components/skeleton';
+import DropDownMenu from '@/components/dropdown-menu';
+import { Bookmark, Ban, Flag } from 'lucide-react';
+
+type JobListingProp = {
+viewDetailsPath: string;
+};
+
+export default function JobListing({ viewDetailsPath }: JobListingProp) {
+const {
+data,
+isLoading,
+fetchNextPage, // Function to fetch the next page
+hasNextPage, // Whether there are more pages to load
+isFetchingNextPage,
+} = useGetJobs();
+
+    const [selectedJob, setSelectedJob] = useState(undefined);
+    const navigate = useNavigate();
+    const { ref, inView } = useInView(); // Track the bottom element for infinite scroll
+
+    useEffect(() => {
+        if (data?.pages && data.pages.length > 0) {
+            setSelectedJob(data.pages[0]?.data[0]);
+        }
+    }, [data]);
+
+    // Fetch next page when `inView` is true
+    useEffect(() => {
+        if (inView && hasNextPage) {
+            fetchNextPage();
+        }
+    }, [inView, hasNextPage, fetchNextPage]);
+
+    const menuData = [
+        { icon: <Bookmark />, label: 'Save' },
+        { icon: <Ban />, label: 'Not Interested' },
+        { icon: <Flag />, label: 'Report' },
+    ];
+
+    return (
+        <section className="flex flex-col py-20 border-2 w-full">
+            <Search />
+            <div className="flex flex-col md:flex-row gap-5 justify-center pt-10 md:pt-20 w-full px-5">
+                <section className="grid gap-5">
+                    <div className="flex justify-center md:justify-normal">
+                        <p className="text-gray-600 text-xl font-semibold">
+                            Recent Jobs
+                        </p>
+                    </div>
+
+                    {isLoading && <SkeletonListJob size={6} />}
+
+                    {data?.pages?.map((page) =>
+                        page?.data.map((job, idx) => (
+                            <Card
+                                className={`w-full md:max-w-lg mx-auto shadow-lg md:w-full cursor-pointer ${
+                                    selectedJob === job ? 'border-blue-500' : ''
+                                }`}
+                                key={idx}
+                                onClick={() => setSelectedJob(job)}
+                            >
+                                <CardHeader className="pb-4 border-b">
+                                    <div className="flex flex-row items-center justify-between">
+                                        <CardTitle className="text-lg font-semibold">
+                                            {job.title}
+                                        </CardTitle>
+                                        <DropDownMenu
+                                            dropMenuIcon={
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    className="h-6 w-6 text-muted-foreground"
+                                                >
+                                                    <circle
+                                                        cx="12"
+                                                        cy="6"
+                                                        r="2"
+                                                    />
+                                                    <circle
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="2"
+                                                    />
+                                                    <circle
+                                                        cx="12"
+                                                        cy="18"
+                                                        r="2"
+                                                    />
+                                                </svg>
+                                            }
+                                            menuClassName="-ml-44 w-48 py-5 font-bold"
+                                            menuOptions={menuData}
+                                        />
+                                    </div>
+                                    <CardDescription className="font-semibold">
+                                        {job.company}
+                                    </CardDescription>
+                                    <CardDescription className="font-semibold">
+                                        <p>{`${job.type} / ${job.location}`}</p>
+                                        <p>Pay range: {`${job.pay}`}</p>
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-4 pt-3">
+                                    <p className="text-gray-700">
+                                        {job.shortRoleDescription}
+                                    </p>
+                                </CardContent>
+                                <CardFooter className="flex justify-between items-center border-t pt-4">
+                                    <p className="text-gray-500 text-sm">
+                                        {`Posted on ${new Date(job.posted).toLocaleDateString()}`}
+                                    </p>
+                                    <Button
+                                        label="Details"
+                                        size="lg"
+                                        type="button"
+                                        className="flex md:hidden"
+                                        onClick={() =>
+                                            navigate(
+                                                `${viewDetailsPath}/${job.id}`
+                                            )
+                                        }
+                                    />
+                                </CardFooter>
+                            </Card>
+                        ))
+                    )}
+
+                    {/* Infinite scrolling loader */}
+                    {isFetchingNextPage && <SkeletonListJob size={3} />}
+
+                    <div ref={ref} className="h-10" />
+                </section>
+
+                {selectedJob && (
+                    <aside className="hidden md:block sticky top-28 h-[80vh] overflow-y-auto">
+                        <div className="text-left mb-4 sticky block">
+                            <p className="text-gray-600 text-xl font-semibold">
+                                Job details
+                            </p>
+                        </div>
+                        <Card className="max-w-lg mx-auto shadow-lg">
+                            <CardHeader className="pb-4 border-b">
+                                <div className="flex flex-row items-center justify-between">
+                                    <CardTitle className="text-xl font-bold">
+                                        {selectedJob.title}
+                                    </CardTitle>
+                                </div>
+                                <CardDescription className="font-semibold">
+                                    {selectedJob.company}
+                                </CardDescription>
+                                <CardDescription className="font-semibold">
+                                    <p>{`${selectedJob.type} / ${selectedJob.location}`}</p>
+                                    <p>Pay range: {`${selectedJob.pay}`}</p>
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-4 pt-3">
+                                {/* Rest of the job details */}
+                            </CardContent>
+                            <CardFooter className="flex justify-between items-center border-t pt-4">
+                                <p className="text-gray-500 text-sm">
+                                    {`Posted on ${new Date(selectedJob.posted).toLocaleDateString()}`}
+                                </p>
+                                <Button
+                                    label="Apply"
+                                    size="lg"
+                                    type="button"
+                                    onClick={() => navigate('/job/:id/apply')}
+                                />
+                            </CardFooter>
+                        </Card>
+                    </aside>
+                )}
+            </div>
+        </section>
+    );
+
+}

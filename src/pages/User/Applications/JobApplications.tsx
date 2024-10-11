@@ -2,7 +2,16 @@ import { useMemo, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { PaginationState, VisibilityState } from '@tanstack/react-table';
 import DataTableSSR from '@/components/table/datatable-ssr';
-import { Eye, XCircle } from 'lucide-react';
+import Button from '@/components/ui/button';
+
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Ellipsis, Pencil, Trash2 } from 'lucide-react';
+
 import { mockJobData } from './MockJobData';
 
 export default function JobApplicationsTable() {
@@ -76,16 +85,35 @@ export default function JobApplicationsTable() {
                 },
             },
             {
-                accessorKey: 'actions',
-                header: 'Actions',
-                cell: (info) => (
-                    <div className="flex space-x-4">
-                        <Eye
-                            className="text-blue-600 hover:text-blue-800 cursor-pointer transition duration-300"
-                            onClick={() => alert(info.row.original.id)}
-                        />
-                        <XCircle className="text-red-600 hover:text-red-800 cursor-pointer transition duration-300" />
-                    </div>
+                header: () => <span className="font-bold">Actions</span>,
+                id: 'action',
+                cell: () => (
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>
+                            <Button variant="outline" size="icon">
+                                <Ellipsis size={18} />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            align="start"
+                            className="-mt-2 ml-8 w-36"
+                        >
+                            <DropdownMenuItem
+                                className="flex cursor-pointer items-center gap-2 hover:bg-blue-500"
+                                onClick={() => {}}
+                            >
+                                <Pencil size={18} />
+                                <span>View</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                                className="flex cursor-pointer items-end gap-2 hover:bg-blue-500"
+                                onClick={() => {}}
+                            >
+                                <Trash2 size={18} />
+                                <span>Delete</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 ),
             },
         ],
@@ -93,7 +121,7 @@ export default function JobApplicationsTable() {
     );
 
     return (
-        <section className="p-5 bg-white min-h-screen mt-20 md:w-[90%] w-full">
+        <section className="p-5 bg-white min-h-screen mt-20 w-full lg:w-[80%]">
             <div className="mb-10">
                 <div className="">
                     <h2 className="text-2xl font-bold text-gray-800">
@@ -105,7 +133,7 @@ export default function JobApplicationsTable() {
                     </p>
                 </div>
             </div>
-            <div className="shadow-lg rounded-lg  p-6">
+            <div className="shadow-lg rounded-lg">
                 <DataTableSSR
                     data={filteredData}
                     columns={columns}

@@ -7,7 +7,7 @@ const Profile: React.FC = () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             <Hero />
-            <main className="container mx-auto px-4 pb-12">
+            <main className="mx-auto px-4 pb-12 lg:w-[80%]">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <LeftProfileSection />
                     <RightProfile />

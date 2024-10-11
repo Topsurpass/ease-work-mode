@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
 import authHTTP from '@/lib/http-client';
 import QueryKeys from '@/api/query-keys';
 
@@ -8,7 +8,29 @@ interface IParameters {
 
 const url = `/job`;
 
-export default function useGetJobs(
+export function useGetJobs(requestParams: IParameters = {}) {
+    return useInfiniteQuery({
+        queryKey: [QueryKeys.GET_JOBS, requestParams],
+        queryFn: async ({ pageParam = 1 }) => {
+            try {
+                const res = await authHTTP.get(url, {
+                    params: {
+                        ...requestParams,
+                        page: pageParam,
+                        limit: 10,
+                    },
+                });
+                return res?.data;
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        },
+        getNextPageParam: (lastPage) => lastPage?.nextPage ?? false,
+        initialPageParam: 1,
+    });
+}
+
+export function useGetJobById(
     id?: string | number,
     requestParams: IParameters = {}
 ) {
