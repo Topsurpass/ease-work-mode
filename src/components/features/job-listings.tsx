@@ -133,7 +133,7 @@ export default function JobListing() {
                     ))}
                     {hasNextPage && (
                         <div ref={loadMoreRef} className="text-center py-4">
-                            <SkeletonListJob size={3} />
+                            <SkeletonListJob size={1} />
                         </div>
                     )}
                 </section>
