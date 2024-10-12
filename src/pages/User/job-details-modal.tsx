@@ -36,20 +36,18 @@ export default function JobDetailsModal() {
                                 {data.title}
                             </CardTitle>
                         </div>
-                        <CardDescription className="text-gray-600 mt-2">
+                        <CardDescription className="text-gray-600 mt-2 font-semibold">
                             <span className="font-semibold">
                                 {data.company}
                             </span>{' '}
                             - {data.type} / {data.location}
                         </CardDescription>
-                        <CardDescription className="text-sm text-gray-500 mt-1">
+                        <CardDescription className="text-sm text-gray-500 mt-1 font-semibold">
                             {`Posted on: ${new Date(data.posted).toLocaleDateString()}`}
                         </CardDescription>
-                        <p className="text-sm text-gray-500 mt-2">
+                        <p className="text-sm text-gray-500 mt-2 font-semibold">
                             Pay range:{' '}
-                            <span className="font-semibold">
-                                {data.pay || 'N/A'}
-                            </span>
+                            <span className="">{data.pay || 'N/A'}</span>
                         </p>
                     </CardHeader>
 
