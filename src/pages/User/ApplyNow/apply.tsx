@@ -49,7 +49,7 @@ export default function Apply() {
         <div className="bg-gray-50 min-h-screen p-10 mt-20">
             <div className="md:max-w-4xl mx-auto bg-white shadow-lg rounded-lg w-full">
                 <header className="p-8">
-                    <h2 className="text-4xl font-bold text-gray-900 text-center mb-4">
+                    <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
                         Job Application
                     </h2>
                     <p className="text-center text-gray-600">

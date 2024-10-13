@@ -108,3 +108,33 @@ h2 {
         @apply bg-background text-foreground;
     }
 }
+
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #999999 transparent;
+}
+
+/* For Google Chrome and others */
+.sidebar::-webkit-scrollbar {
+    background: transparent;
+    width: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #999999;
+    border-radius: 10px;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8d8d8d;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #8d8d8d;
+    border-radius: 5px;
+}

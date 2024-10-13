@@ -39,9 +39,9 @@ export default function Login() {
         <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
             {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
 
-            <div className="bg-white p-8 shadow-2xl rounded-2xl md:max-w-lg w-[80%]">
+            <div className="w-[90%] bg-white p-5 shadow-2xl rounded-2xl md:max-w-md">
                 <div className="flex flex-col justify-center items-center gap-2 mb-8">
-                    <h2 className="text-3xl font-bold text-center text-blue-700">
+                    <h2 className="text-2xl md:text-3xl font-bold text-center text-blue-700">
                         Welcome Back
                     </h2>
                     <p className="text-gray-600">Sign in to apply for jobs</p>
