@@ -5,7 +5,6 @@ import {
     SelectSchema,
     passwordSchema,
 } from '@/validations/schema';
-import { link } from 'fs/promises';
 
 export const SignUpSchema = z.object({
     jobTitle: z.string().min(1, { message: 'Job title is required' }),
