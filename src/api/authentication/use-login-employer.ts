@@ -23,11 +23,11 @@ const useLoginEmployer = () => {
             }
         },
         onSuccess: (res) => {
-            const { token, ...rest } = res.data;
-            setAuthTokenHTTP(token);
-            const decodedToken = jwtDecode(token);
+            const { accessToken, ...rest } = res.data;
+            setAuthTokenHTTP(accessToken);
+            const decodedToken = jwtDecode(accessToken);
             addUserToStore({
-                token,
+                accessToken,
                 ...rest.data.employer,
                 ...decodedToken,
             } as any); // TODO: replace any type with the correct one

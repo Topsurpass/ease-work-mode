@@ -31,7 +31,7 @@ export default function TextArea(props: InputProps) {
     } = props;
 
     const baseClass = cn(
-        'placeholder:text-sm placeholder:text-gray-400 placeholder:font-light pl-2',
+        'placeholder:text-sm placeholder:text-gray-400 placeholder:font-light pl-2 bg-white',
         icon && 'pl-10',
         {
             'ring-1 ring-red-500 border-none focus:ring-1 focus:ring-red-500':

@@ -37,7 +37,7 @@ export default function JobListing() {
     const jobs = data?.pages.flatMap((page) => page.data) || [];
 
     useEffect(() => {
-        if (jobs.length > 0 && !selectedJob) {
+        if (jobs?.length > 0 && !selectedJob) {
             setSelectedJob(jobs[0]);
         }
     }, [jobs, selectedJob]);
@@ -68,7 +68,7 @@ export default function JobListing() {
                         </p>
                     </div>
                     {isLoading && <SkeletonListJob size={6} />}
-                    {jobs.map((job: JobCardProps, idx: number) => (
+                    {jobs?.map((job: JobCardProps, idx: number) => (
                         <Card
                             className={`w-full md:max-w-lg mx-auto shadow-lg md:w-full cursor-pointer ${selectedJob === job ? 'border-blue-500' : ''}`}
                             key={idx}
@@ -77,7 +77,7 @@ export default function JobListing() {
                             <CardHeader className="pb-4 border-b">
                                 <div className="flex flex-row items-center justify-between">
                                     <CardTitle className="text-lg font-semibold">
-                                        {job.title}
+                                        {job?.title}
                                     </CardTitle>
                                     <DropDownMenu
                                         dropMenuIcon={
@@ -101,20 +101,20 @@ export default function JobListing() {
                                     />
                                 </div>
                                 <CardDescription className="font-semibold">
-                                    {job.company}
+                                    {job?.company}
                                 </CardDescription>
                                 <CardDescription className="font-semibold">
-                                    <p>{`${job.type} / ${job.location}`}</p>
-                                    <p>Pay range: {`${job.pay}`}</p>
+                                    <p>{`${job?.type} / ${job?.location}`}</p>
+                                    <p>Pay range: {`${job?.pay}`}</p>
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4 pt-3">
                                 <p className="text-gray-700">
-                                    {job.shortRoleDescription}
+                                    {job?.shortRoleDescription}
                                 </p>
                             </CardContent>
                             <CardFooter className="flex justify-between items-center border-t pt-4">
-                                <p className="text-gray-500 text-sm">{`Posted on ${new Date(job.posted).toLocaleDateString()}`}</p>
+                                <p className="text-gray-500 text-sm">{`Posted on ${new Date(job?.posted).toLocaleDateString()}`}</p>
                                 <Button
                                     label="Details"
                                     size="lg"

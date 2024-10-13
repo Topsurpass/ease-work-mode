@@ -22,8 +22,6 @@ export default function AppHeader({
     homePath = '/',
     desktopMenu,
     mobileMenu,
-    //hasSignInButton = false,
-    //signInPath,
     hasLogoutButton = false,
     showDeskMenuIcon = false,
 }: AppHeaderProp) {
@@ -44,14 +42,6 @@ export default function AppHeader({
             </NavLink>
 
             <nav className="hidden md:flex items-center gap-6">
-                {/*{hasSignInButton && signInPath && (
-                    <Button
-                        label="Sign in"
-                        size="lg"
-                        type="button"
-                        onClick={() => navigate(signInPath)}
-                    />
-                )}*/}
                 {desktopMenu.map((menu, idx) => (
                     <NavLink
                         to={menu.path}
