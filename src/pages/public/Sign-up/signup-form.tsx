@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
-import { DatePicker } from '@/components/ui/date-range-picker';
+import { DatePicker } from '@/components/ui/date-picker';
 import {
     TextField,
     TextArea,
@@ -212,7 +212,7 @@ export default function SignUpForm() {
                             </div>
                             <div className="">
                                 <PhoneInputField
-                                    label=""
+                                    label="Phone"
                                     name="phoneNumber"
                                     control={control}
                                     inputClassName="p-3"
