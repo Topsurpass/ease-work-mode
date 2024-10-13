@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
-import { UserIcon, X, Plus, Trash } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { UserIcon, Plus, Trash } from 'lucide-react';
 import { useForm, SubmitHandler, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
@@ -44,7 +43,6 @@ const initialValue = {
 };
 
 export default function SignUpForm() {
-    const navigate = useNavigate();
     const {
         control,
         handleSubmit,
