@@ -124,20 +124,12 @@ export default function SignUpForm() {
 
     return (
         <div className="min-h-screen bg-gray-100 p-6 mt-20">
-            <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
+            <div className="w-full md:max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
                 <div className="flex justify-between items-center p-4 border-b">
                     <div className="flex items-center gap-3">
                         <UserIcon size={24} />
                         <h2 className="text-xl font-bold">Sign Up</h2>
                     </div>
-                    <Button
-                        onClick={() => navigate(-1)}
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full"
-                    >
-                        <X />
-                    </Button>
                 </div>
 
                 <form
