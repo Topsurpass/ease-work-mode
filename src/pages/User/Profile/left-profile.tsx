@@ -18,7 +18,7 @@ export default function LeftProfileSection() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="text-gray-700">
-                    <p className="py-4">
+                    <p className="py-2">
                         I am a passionate frontend developer with over 10 years
                         of experience in crafting user-friendly, performant web
                         applications. I specialize in React, TypeScript, and

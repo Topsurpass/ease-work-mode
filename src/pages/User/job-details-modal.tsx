@@ -26,26 +26,25 @@ export default function JobDetailsModal() {
             open={isModalOpen && EntityType.JOB_DETAILS === entity}
             handleClose={onModalClose}
             description="View more information about jobs and apply."
-            headerClass="bg-gray-100 py-5 border"
+            headerClass="bg-gray-100 py-5"
+            titleClass="text-xl"
         >
-            <section className="flex flex-col items-center justify-center mt- w-full">
-                <Card className="w-full shadow-lg rounded-lg border border-gray-200">
-                    <CardHeader className="pb-6 border-b border-gray-200 bg-white px-6 py-4">
+            <section className="flex flex-col items-center justify-center w-full">
+                <Card className="w-full shadow-lg">
+                    <CardHeader className="pb-6 border-b border-gray-200 bg-white py-4">
                         <div className="flex items-center justify-between">
-                            <CardTitle className="text-xl font-bold text-gray-800">
+                            <CardTitle className="text-md font-semibold text-gray-800">
                                 {data.title}
                             </CardTitle>
                         </div>
-                        <CardDescription className="text-gray-600 mt-2 font-semibold">
-                            <span className="font-semibold">
-                                {data.company}
-                            </span>{' '}
-                            - {data.type} / {data.location}
+                        <CardDescription className="text-gray-600 mt-2">
+                            <span className="">{data.company}</span> -{' '}
+                            {data.type} / {data.location}
                         </CardDescription>
-                        <CardDescription className="text-sm text-gray-500 mt-1 font-semibold">
+                        <CardDescription className="text-sm text-gray-500 mt-1">
                             {`Posted on: ${new Date(data.posted).toLocaleDateString()}`}
                         </CardDescription>
-                        <p className="text-sm text-gray-500 mt-2 font-semibold">
+                        <p className="text-sm text-gray-500 mt-2">
                             Pay range:{' '}
                             <span className="">{data.pay || 'N/A'}</span>
                         </p>
@@ -53,7 +52,7 @@ export default function JobDetailsModal() {
 
                     <CardContent className="space-y-8 bg-white px-6 py-8">
                         <div>
-                            <h3 className="text-xl font-semibold text-blue-700">
+                            <h3 className="font-semibold text-blue-700">
                                 About the Company
                             </h3>
                             <p className="text-gray-700 mt-2">
@@ -63,7 +62,7 @@ export default function JobDetailsModal() {
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-semibold text-blue-700">
+                            <h3 className="font-semibold text-blue-700">
                                 Full Role Description
                             </h3>
                             <p className="text-gray-700 mt-2">
@@ -73,14 +72,14 @@ export default function JobDetailsModal() {
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-semibold text-blue-700">
+                            <h3 className="font-semibold text-blue-700">
                                 Key Responsibilities
                             </h3>
                             <p>{data.keyResponsibility}</p>
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-semibold text-blue-700">
+                            <h3 className=" font-semibold text-blue-700">
                                 Qualifications & Experience
                             </h3>
                             <p className="text-gray-700 mt-2">
@@ -90,7 +89,7 @@ export default function JobDetailsModal() {
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-semibold text-blue-700">
+                            <h3 className="font-semibold text-blue-700">
                                 Method of Application
                             </h3>
                             <p className="text-gray-700 mt-2">
@@ -99,7 +98,7 @@ export default function JobDetailsModal() {
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-semibold text-blue-700">
+                            <h3 className="font-semibold text-blue-700">
                                 Application Deadline
                             </h3>
                             <p className="text-gray-700 mt-2">
@@ -107,20 +106,19 @@ export default function JobDetailsModal() {
                             </p>
                         </div>
                     </CardContent>
+                    <div className="flex items-center justify-end gap-10 p-4">
+                        <Button
+                            label="Apply for this job"
+                            size="lg"
+                            className="bg-blue-600 text-white hover:bg-blue-700 py-2 px-4 rounded-lg"
+                            onClick={() => {
+                                navigate(`/dashboard/job/${data.id}/apply`);
+                                onModalClose();
+                            }}
+                        />
+                    </div>
                 </Card>
             </section>
-
-            <div className="flex items-center justify-end gap-10 p-4">
-                <Button
-                    label="Apply for this job"
-                    size="lg"
-                    className="bg-blue-600 text-white hover:bg-blue-700 py-2 px-4 rounded-lg"
-                    onClick={() => {
-                        navigate(`/dashboard/job/${data.id}/apply`);
-                        onModalClose();
-                    }}
-                />
-            </div>
         </Modal>
     );
 }

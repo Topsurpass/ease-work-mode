@@ -8,17 +8,17 @@ export default function Footer() {
                 <div className="flex flex-col items-center mb-8">
                     <Link
                         to="/"
-                        className="text-2xl font-bold text-blue-600 hover:text-blue-600"
+                        className="text-xl font-bold text-blue-600 hover:text-blue-600"
                     >
                         EaseWork
                     </Link>
-                    <p className="text-lg text-center max-w-lg">
+                    <p className="text-center max-w-lg">
                         Connecting You to Remote Opportunities
                     </p>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-8">
                     <div>
-                        <h3 className="font-bold text-lg mb-4">Quick Links</h3>
+                        <h3 className="font-semibold mb-4">Quick Links</h3>
 
                         <ul className="space-y-2">
                             {FOOTER_LINKS.map((link, idx) => (
@@ -34,7 +34,7 @@ export default function Footer() {
                         </ul>
                     </div>
                     <div className="flex flex-col">
-                        <h3 className="font-bold text-lg mb-4">Follow Us</h3>
+                        <h3 className="font-semibold mb-4">Follow Us</h3>
                         <div className="flex space-x-4 mb-4">
                             {SOCIALS.map((social, idx) => (
                                 <Link
@@ -54,7 +54,7 @@ export default function Footer() {
                         </p>
                     </div>
                     <div>
-                        <h3 className="font-bold text-lg mb-4">
+                        <h3 className="font-semibold mb-4">
                             Subscribe to Our Newsletter
                         </h3>
                         <form className="flex flex-col gap-2 lg:flex-row lg:gap-0">

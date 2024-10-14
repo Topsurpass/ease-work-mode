@@ -68,7 +68,7 @@ export default function JobApplicationsTable() {
                 accessorKey: 'company',
                 header: 'company',
                 cell: (info) => (
-                    <p className="text-gray-500">{info.getValue()}</p>
+                    <p className="text-gray-500 text-sm">{info.getValue()}</p>
                 ),
             },
             {
@@ -85,7 +85,7 @@ export default function JobApplicationsTable() {
                 },
             },
             {
-                header: () => <span className="font-bold">Actions</span>,
+                header: () => <span className="font-semibold">Actions</span>,
                 id: 'action',
                 cell: () => (
                     <DropdownMenu>
@@ -121,10 +121,10 @@ export default function JobApplicationsTable() {
     );
 
     return (
-        <section className="p-5 bg-white min-h-screen mt-20 w-full lg:w-[80%]">
+        <section className="md:p-5 bg-white min-h-screen mt-20 w-full lg:w-[80%]">
             <div className="mb-10">
-                <div className="">
-                    <h2 className="text-2xl font-bold text-gray-800">
+                <div className="p-5 md:p-0">
+                    <h2 className="text-xl font-semibold text-gray-800">
                         Job Applications
                     </h2>
                     <p className="text-gray-600 mt-2">

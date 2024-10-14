@@ -63,7 +63,7 @@ export default function JobListing() {
             <div className="flex flex-col md:flex-row gap-5 justify-center pt-10 md:pt-20 w-full px-5">
                 <section className="grid gap-5">
                     <div className="flex justify-center md:justify-normal">
-                        <p className="text-gray-600 text-xl font-semibold">
+                        <p className="text-gray-600 text-lg font-semibold">
                             Recent Jobs
                         </p>
                     </div>
@@ -76,7 +76,7 @@ export default function JobListing() {
                         >
                             <CardHeader className="pb-4 border-b">
                                 <div className="flex flex-row items-center justify-between">
-                                    <CardTitle className="text-lg font-semibold">
+                                    <CardTitle className="text-md font-semibolid">
                                         {job?.title}
                                     </CardTitle>
                                     <DropDownMenu
@@ -96,14 +96,14 @@ export default function JobListing() {
                                                 <circle cx="12" cy="18" r="2" />
                                             </svg>
                                         }
-                                        menuClassName="-ml-44 w-48 py-5 font-bold"
+                                        menuClassName="-ml-44 w-48 py-5 font-semibold"
                                         menuOptions={menuData}
                                     />
                                 </div>
-                                <CardDescription className="font-semibold">
+                                <CardDescription className="">
                                     {job?.company}
                                 </CardDescription>
-                                <CardDescription className="font-semibold">
+                                <CardDescription className="">
                                     <p>{`${job?.type} / ${job?.location}`}</p>
                                     <p>Pay range: {`${job?.pay}`}</p>
                                 </CardDescription>
@@ -144,21 +144,21 @@ export default function JobListing() {
                     selectedJob && (
                         <aside className="hidden md:block sticky top-28 h-[80vh] overflow-y-auto">
                             <div className="text-left mb-4 sticky block">
-                                <p className="text-gray-600 text-xl font-semibold">
+                                <p className="text-gray-600 text-lg font-semibold">
                                     Job details
                                 </p>
                             </div>
                             <Card className="max-w-lg mx-auto shadow-lg">
                                 <CardHeader className="pb-4 border-b">
                                     <div className="flex flex-row items-center justify-between">
-                                        <CardTitle className="text-xl font-bold">
+                                        <CardTitle className="text-md font-semibold">
                                             {selectedJob.title}
                                         </CardTitle>
                                     </div>
-                                    <CardDescription className="font-semibold">
+                                    <CardDescription className="">
                                         {selectedJob.company}
                                     </CardDescription>
-                                    <CardDescription className="font-semibold">
+                                    <CardDescription className="">
                                         <p>{`${selectedJob.type} / ${selectedJob.location}`}</p>
                                         <p>Pay range: {`${selectedJob.pay}`}</p>
                                     </CardDescription>
@@ -166,7 +166,7 @@ export default function JobListing() {
                                 <CardContent className="space-y-4 pt-3">
                                     <div className="flex flex-col gap-3">
                                         <div>
-                                            <h3 className="font-semibold text-lg text-blue-700">
+                                            <h3 className="font-semibold text-blue-700">
                                                 About Company
                                             </h3>
                                             <p className="text-gray-700">
@@ -174,7 +174,7 @@ export default function JobListing() {
                                             </p>
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-lg text-blue-700">
+                                            <h3 className="font-semibold text-blue-700">
                                                 Full Role Description
                                             </h3>
                                             <p className="text-gray-700">
@@ -184,7 +184,7 @@ export default function JobListing() {
                                             </p>
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-lg text-blue-700">
+                                            <h3 className="font-semibold text-blue-700">
                                                 Key Responsibilities
                                             </h3>
                                             <p className="text-gray-700">
@@ -192,7 +192,7 @@ export default function JobListing() {
                                             </p>
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-lg text-blue-700">
+                                            <h3 className="font-semibold text-blue-700">
                                                 Qualification and Experience
                                             </h3>
                                             <p className="text-gray-700">
@@ -202,7 +202,7 @@ export default function JobListing() {
                                             </p>
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-lg text-blue-700">
+                                            <h3 className="font-semibold text-blue-700">
                                                 Method of Application
                                             </h3>
                                             <p className="text-gray-700">
@@ -212,7 +212,7 @@ export default function JobListing() {
                                             </p>
                                         </div>
                                         <div>
-                                            <h3 className="font-semibold text-lg text-blue-700">
+                                            <h3 className="font-semibold text-blue-700">
                                                 Application Deadline
                                             </h3>
                                             <p className="text-gray-700">

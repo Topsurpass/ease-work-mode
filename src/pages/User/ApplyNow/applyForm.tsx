@@ -46,29 +46,13 @@ export default function Apply() {
     };
 
     return (
-        <div className="bg-gray-50 min-h-screen p-10 mt-20">
+        <div className="bg-gray-50 min-h-screen md:p-10 mt-20">
             <div className="md:max-w-4xl mx-auto bg-white shadow-lg rounded-lg w-full">
-                <header className="p-8">
-                    <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
-                        Job Application
-                    </h2>
-                    <p className="text-center text-gray-600">
-                        Complete the form below to apply for{' '}
-                        <span className="font-semibold text-gray-800">
-                            {job?.title}
-                        </span>{' '}
-                        at{' '}
-                        <span className="font-semibold text-gray-800">
-                            {job?.company}
-                        </span>
-                        .
-                    </p>
-                </header>
                 {/*<pre>{JSON.stringify(watch(), null, 2)}</pre>*/}
 
                 <Card className="border-0 rounded-none mb-6">
                     <CardHeader className="p-6 border-b bg-gray-50">
-                        <CardTitle className="text-2xl font-semibold text-gray-800">
+                        <CardTitle className="text-xl font-semibold text-gray-800">
                             {job?.title}
                         </CardTitle>
                         <CardDescription className="text-gray-600">
@@ -90,12 +74,12 @@ export default function Apply() {
                             to submit your application.
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="p-6 space-y-6">
+                    <CardContent className="space-y-6">
                         <form
                             onSubmit={handleSubmit(processForm)}
-                            className="p-6 space-y-6"
+                            className="space-y-6"
                         >
-                            <div>
+                            <div className="pt-3">
                                 <TextField
                                     label="Full Name"
                                     placeholder="Enter your name"
@@ -128,9 +112,6 @@ export default function Apply() {
                             </div>
 
                             <div>
-                                <label className="text-gray-700 font-semibold mb-2">
-                                    Upload Resume
-                                </label>
                                 <TextField
                                     type="file"
                                     name="resume"
