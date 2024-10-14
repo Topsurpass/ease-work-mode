@@ -42,7 +42,7 @@ export default function EmployerLogin() {
 
     return (
         <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
-            <div className="bg-white p-8 shadow-2xl rounded-2xl md:max-w-lg w-[80%]">
+            <div className="bg-white p-8 shadow-2xl rounded-2xl md:max-w-lg w-[90%]">
                 <div className="flex flex-col justify-center items-center gap-2 mb-8">
                     <h2 className="text-3xl font-bold text-center text-blue-700">
                         Welcome Back

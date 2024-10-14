@@ -21,7 +21,7 @@ export const mockNotifications: Notification[] = [
         message:
             'Interview scheduled for Backend Developer at WebSolutions Inc.',
         timestamp: '2023-10-04 09:00',
-        isRead: true,
+        isRead: false,
     },
     {
         id: 3,
@@ -36,10 +36,49 @@ export const mockNotifications: Notification[] = [
         message:
             'Your application for UI/UX Designer at Creative Studios has been accepted.',
         timestamp: '2023-10-02 11:45',
-        isRead: true,
+        isRead: false,
     },
     {
         id: 5,
+        type: 'interview',
+        message:
+            'Reminder: Your interview for Product Manager at FutureTech is tomorrow at 10:00 AM.',
+        timestamp: '2023-10-01 08:00',
+        isRead: false,
+    },
+    {
+        id: 6,
+        type: 'application',
+        message:
+            'Your application for Frontend Developer at Tech Innovations is under review.',
+        timestamp: '2023-10-05 14:30',
+        isRead: false,
+    },
+    {
+        id: 7,
+        type: 'interview',
+        message:
+            'Interview scheduled for Backend Developer at WebSolutions Inc.',
+        timestamp: '2023-10-04 09:00',
+        isRead: false,
+    },
+    {
+        id: 8,
+        type: 'platform',
+        message: 'New job matches based on your profile preferences!',
+        timestamp: '2023-10-03 16:15',
+        isRead: false,
+    },
+    {
+        id: 9,
+        type: 'application',
+        message:
+            'Your application for UI/UX Designer at Creative Studios has been accepted.',
+        timestamp: '2023-10-02 11:45',
+        isRead: false,
+    },
+    {
+        id: 10,
         type: 'interview',
         message:
             'Reminder: Your interview for Product Manager at FutureTech is tomorrow at 10:00 AM.',

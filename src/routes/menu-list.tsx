@@ -1,7 +1,7 @@
 import { BriefcaseBusiness } from 'lucide-react';
 
 import { MenuList } from '@/types/menu';
-import { Bell, Briefcase, User, Settings, Wallet, LogIn } from 'lucide-react';
+import { Briefcase, User, Settings, Wallet, LogIn } from 'lucide-react';
 
 export const USER_MENU_HEADER: MenuList = [
     {
@@ -35,11 +35,11 @@ export const USER_DASHBOARD_MENU: MenuList = [
         title: 'My applications',
         icon: <Briefcase />,
     },
-    {
-        path: '/notifications',
-        title: 'Notification',
-        icon: <Bell />,
-    },
+    //{
+    //    path: '/notifications',
+    //    title: 'Notification',
+    //    icon: <Bell />,
+    //},
 
     {
         path: '/settings',
