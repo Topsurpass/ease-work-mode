@@ -5,6 +5,8 @@ import { IoMenuOutline } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 import { LogOut } from 'lucide-react';
 import useAuthStore from '@/stores/user-store';
+import Notifications from '@/pages/User/Notifications';
+
 //import Button from '@/components/ui/button';
 
 type AppHeaderProp = {
@@ -16,6 +18,7 @@ type AppHeaderProp = {
     hasLogoutButton?: boolean;
     signInPath?: string;
     showDeskMenuIcon?: boolean;
+    isLogin?: boolean;
 };
 
 export default function AppHeader({
@@ -24,9 +27,9 @@ export default function AppHeader({
     mobileMenu,
     hasLogoutButton = false,
     showDeskMenuIcon = false,
+    isLogin = false,
 }: AppHeaderProp) {
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu();
-    //const navigate = useNavigate();
     const userStore = useAuthStore((state) => state);
     const handleLogout = () => {
         userStore.reset();
@@ -62,7 +65,7 @@ export default function AppHeader({
                         </p>
                     </NavLink>
                 ))}
-
+                {isLogin && <Notifications />}
                 {hasLogoutButton && (
                     <LogOut
                         className="cursor-pointer text-gray-600"
@@ -70,7 +73,9 @@ export default function AppHeader({
                     />
                 )}
             </nav>
-            <div className="md:hidden">
+
+            <div className="md:hidden flex gap-5 justify-center items-center">
+                {isLogin && <Notifications />}
                 {isMobileMenuOpen ? (
                     <IoMdClose
                         className="w-8 h-8 text-blue-600 cursor-pointer border"

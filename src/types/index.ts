@@ -22,6 +22,11 @@ export interface State {
     isDelete: boolean;
     entity: EntityType | string;
 }
+export interface IEventFileUpload {
+    file: any;
+    setFile: React.Dispatch<React.SetStateAction<any>>;
+    resetFile: () => void;
+}
 
 export type Action =
     | { type: 'OPEN_MODAL'; payload: Record<string, any> }

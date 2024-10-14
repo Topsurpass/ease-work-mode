@@ -1,9 +1,15 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { UserIcon, Plus, Trash } from 'lucide-react';
 import { useForm, SubmitHandler, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { DatePicker } from '@/components/ui/date-picker';
+import { toast } from 'sonner';
+import EventFileUpload from './event-file-upload';
+import { GENDER } from '@/constants';
+import { techSkils } from '@/data/skills';
+import useMutateJobSeeker from '@/api/job-seekers/use-mutate-jobSeekers';
+import { RequestMethod } from '@/types/enum';
 import {
     TextField,
     TextArea,
@@ -14,12 +20,12 @@ import { SignUpInputs, SignUpSchema } from '@/validations/sign-up-schema';
 
 const initialValue = {
     jobTitle: '',
-    firstname: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     password: '',
     bio: '',
     gender: {},
-    phoneNumber: '',
+    phone: '',
     email: '',
     address: {
         country: '',
@@ -42,16 +48,20 @@ const initialValue = {
     skills: [],
 };
 
+const initialState = {
+    result: {},
+    preview: '',
+    hasFile: false,
+    error: [],
+};
 export default function SignUpForm() {
-    const {
-        control,
-        handleSubmit,
-        //watch,
-        //formState: { errors },
-    } = useForm<SignUpInputs>({
+    const { control, handleSubmit, reset } = useForm<SignUpInputs>({
         resolver: zodResolver(SignUpSchema),
         defaultValues: initialValue,
     });
+    const [file, setFile] = useState<any>(initialState);
+    const resetFile = () => setFile(initialState);
+    const { mutate: mutateJobSeeker, isPending } = useMutateJobSeeker();
 
     const {
         fields: experienceFields,
@@ -90,35 +100,54 @@ export default function SignUpForm() {
     });
 
     const processForm: SubmitHandler<SignUpInputs> = async (data) => {
-        const formattedData = {
-            ...data,
-            skills: data.skills.map((skill) => skill.value),
-            gender: data.gender.value,
-        };
+        const formData = new FormData();
+        formData.append('cv', file?.result);
+        formData.append('jobTitle', data.jobTitle);
+        formData.append('firstName', data.firstName);
+        formData.append('lastName', data.lastName);
+        formData.append('email', data.email);
+        formData.append('password', data.password);
+        formData.append('phone', data.phone);
+        formData.append('bio', data?.bio || '');
+        formData.append('gender', JSON.stringify(data.gender.value));
+        formData.append('address', JSON.stringify(data.address));
+        formData.append('experience', JSON.stringify(data.experience));
+        formData.append('education', JSON.stringify(data.education));
+        formData.append('portfolio', JSON.stringify(data.portfolio));
+        formData.append('certification', JSON.stringify(data.certification));
+        formData.append('skills', JSON.stringify(data.skills));
 
-        console.log(formattedData);
+        mutateJobSeeker(
+            {
+                requestMethod: RequestMethod.POST,
+                requestPayload: formData,
+            },
+            {
+                onSuccess: (res) => {
+                    toast.success('Sign up', {
+                        description: res?.data?.message,
+                    });
+                    reset();
+                },
+                onError: (err: any) => {
+                    console.log(err);
+                    toast.error(err.response.data.error);
+                },
+            }
+        );
+        //for (let [key, value] of formData.entries()) {
+        //    console.log(`${key}: ${value}`);
+        //}
+        //data.cv = formData.image;
+        //const formattedData = {
+        //    ...data,
+        //    skills: data.skills.map((skill) => skill.value),
+        //    gender: data.gender.value,
+        //};
     };
 
-    const genderOptions = useMemo(
-        () => [
-            { value: 'male', label: 'Male' },
-            { value: 'female', label: 'Female' },
-            { value: 'other', label: 'Other' },
-        ],
-        []
-    );
-
-    const skillOptions = useMemo(
-        () => [
-            { value: 'javascript', label: 'JavaScript' },
-            { value: 'react', label: 'React' },
-            { value: 'nodejs', label: 'Node.js' },
-            { value: 'python', label: 'Python' },
-            { value: 'uiux', label: 'UI/UX' },
-            // Add more skills here
-        ],
-        []
-    );
+    const genderOptions = useMemo(() => GENDER, []);
+    const skillOptions = useMemo(() => techSkils, []);
 
     return (
         <div className="min-h-screen bg-gray-100 p-6 mt-20">
@@ -129,7 +158,6 @@ export default function SignUpForm() {
                         <h2 className="text-xl font-bold">Sign Up</h2>
                     </div>
                 </div>
-
                 <form
                     onSubmit={handleSubmit(processForm)}
                     className="p-6 space-y-6"
@@ -140,6 +168,7 @@ export default function SignUpForm() {
                         <h3 className="text-lg font-semibold">
                             Personal Information
                         </h3>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="">
                                 <TextField
@@ -154,7 +183,7 @@ export default function SignUpForm() {
                             <div>
                                 <TextField
                                     label="First Name"
-                                    name="firstname"
+                                    name="firstName"
                                     control={control}
                                     placeholder="Your first name"
                                     className="w-full p-3 border rounded-md"
@@ -163,7 +192,7 @@ export default function SignUpForm() {
                             <div>
                                 <TextField
                                     label="Last Name"
-                                    name="lastname"
+                                    name="lastName"
                                     control={control}
                                     placeholder="Your last name"
                                     className="w-full p-3 border rounded-md"
@@ -203,7 +232,7 @@ export default function SignUpForm() {
                             <div className="">
                                 <PhoneInputField
                                     label="Phone"
-                                    name="phoneNumber"
+                                    name="phone"
                                     control={control}
                                     inputClassName="p-3"
                                 />
@@ -431,7 +460,7 @@ export default function SignUpForm() {
                     </section>
 
                     <section className="space-y-4">
-                        <h3 className="text-lg font-semibold">Experience</h3>
+                        <h3 className="text-lg font-semibold">Certifiction</h3>
                         {certificationFields.map((field, index) => (
                             <div
                                 key={field.id}
@@ -539,12 +568,21 @@ export default function SignUpForm() {
                             <Plus /> Add Portfolio
                         </Button>
                     </section>
+                    <section className="space-y-4">
+                        <h3 className="text-lg font-semibold">Attach CV</h3>
+                        <EventFileUpload
+                            resetFile={resetFile}
+                            file={file}
+                            setFile={setFile}
+                        />
+                    </section>
 
                     {/* Submit Button */}
                     <div className="text-right">
                         <Button
                             type="submit"
                             className="px-6 py-2 text-white bg-blue-600 rounded-lg"
+                            isLoading={isPending}
                         >
                             Submit
                         </Button>

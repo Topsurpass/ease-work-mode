@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FOOTER_LINKS, SOCIALS } from '@/constants/footer-links';
+import { FOOTER_LINKS, SOCIALS } from '@/constants';
 
 export default function Footer() {
     return (

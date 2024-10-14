@@ -12,6 +12,7 @@ type TState = {
     lastname: string;
     email: string;
     phone: string;
+    jobTitle: string;
     roles: string[];
     location: string;
     bio: string;
@@ -34,6 +35,7 @@ const initialState: TState = {
     accessToken: '',
     refreshToken: '',
     location: '',
+    jobTitle: '',
     bio: '',
     createdAt: '',
     updatedAt: '',
@@ -61,6 +63,7 @@ const useAuthStore = create<TState & TAction>()(
                             state.email = payload.email;
                             state.firstname = payload.firstName;
                             state.lastname = payload.lastName;
+                            state.jobTitle = payload.jobTitle;
                             state.roles = payload.roles;
                             state.isAuthenticated = true;
                             state.location = payload.location;

@@ -8,12 +8,12 @@ import {
 
 export const SignUpSchema = z.object({
     jobTitle: z.string().min(1, { message: 'Job title is required' }),
-    firstname: z.string().min(1, { message: 'First name is required' }),
-    lastname: z.string().min(1, { message: 'Last name is required' }),
+    firstName: z.string().min(1, { message: 'First name is required' }),
+    lastName: z.string().min(1, { message: 'Last name is required' }),
     password: passwordSchema,
     bio: z.string().optional(),
     gender: SelectSchema,
-    phoneNumber: phoneSchema,
+    phone: phoneSchema,
     email: emailSchema,
     address: z.object({
         country: z.string().min(1, { message: 'Country is required' }),

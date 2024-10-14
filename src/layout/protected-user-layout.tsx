@@ -12,6 +12,7 @@ export default function ProtectedUserLayout() {
                 hasSignInButton={false}
                 showDeskMenuIcon={true}
                 hasLogoutButton
+                isLogin={true}
             />
             <Outlet />
             <Footer />

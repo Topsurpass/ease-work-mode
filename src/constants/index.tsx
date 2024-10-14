@@ -38,3 +38,9 @@ export const SOCIALS: SocialLinks = [
         icon: <FaLinkedinIn className="h-5 w-5" />,
     },
 ];
+
+export const GENDER = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+];
