@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -5,8 +6,7 @@ import {
     DropdownMenuTrigger,
     DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
-import { Bell, CheckCircle, AlertCircle, Trash2 } from 'lucide-react'; // Lucide icons
-import { useState } from 'react';
+import { Bell, CheckCircle, AlertCircle, Trash2 } from 'lucide-react';
 
 interface Notification {
     id: number;
@@ -21,7 +21,7 @@ interface DropDownProp {
     menuClassName: string;
     notifications: Notification[];
     onNotificationClick: (id: number) => void;
-    onDeleteNotification: (id: number) => void; // New prop to handle deletion
+    onDeleteNotification: (id: number) => void;
 }
 
 export default function NotificationDropDownMenu({
@@ -33,7 +33,18 @@ export default function NotificationDropDownMenu({
 }: DropDownProp) {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-    // Function to get the icon based on notification type
+    useEffect(() => {
+        const handleResize = () => {
+            if (isDropdownOpen) {
+                setDropdownOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, [isDropdownOpen]);
+
     const getNotificationIcon = (type: string) => {
         switch (type) {
             case 'application':
@@ -47,18 +58,15 @@ export default function NotificationDropDownMenu({
         }
     };
 
-    // Handle marking notification as read
     const handleNotificationClick = (id: number) => {
         onNotificationClick(id);
     };
 
-    // Handle deleting notification
     const handleDeleteNotification = (id: number, e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent marking as read when clicking delete
+        e.stopPropagation();
         onDeleteNotification(id);
     };
 
-    // Count unread notifications
     const unreadCount = notifications.filter((n) => !n.isRead).length;
 
     return (
@@ -73,13 +81,11 @@ export default function NotificationDropDownMenu({
             </DropdownMenuTrigger>
 
             <DropdownMenuContent
-                className={`w-80 max-h-96 overflow-y-auto ${menuClassName}`}
+                className={`w-full sm:w-full md:w-80 max-h-96 overflow-y-auto ${menuClassName}`}
             >
-                {/* Title with Separator */}
                 <div className="p-3 font-bold text-lg">Notifications</div>
                 <DropdownMenuSeparator />
 
-                {/* Notification List */}
                 {notifications.length > 0 ? (
                     <>
                         {notifications.map((notification) => (
@@ -124,11 +130,6 @@ export default function NotificationDropDownMenu({
                 )}
 
                 <DropdownMenuSeparator />
-
-                {/* "View All Notifications" link */}
-                {/*<div className="p-2 text-center text-blue-500 cursor-pointer">
-                    View All Notifications
-                </div>*/}
             </DropdownMenuContent>
         </DropdownMenu>
     );
