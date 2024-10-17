@@ -24,7 +24,7 @@ export default function Notifications() {
         <div className="">
             <NotificationDropDownMenu
                 dropMenuIcon={<Bell size={24} />}
-                menuClassName="bg-white shadow-lg rounded-lg mr-16 mt-7 w-96"
+                menuClassName="bg-white shadow-lg rounded-lg md:mr-16 mt-7 max-w-xs"
                 notifications={notifications}
                 onNotificationClick={handleNotificationClick}
                 onDeleteNotification={handleDeleteNotification}

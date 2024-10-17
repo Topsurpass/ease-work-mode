@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { DatePicker } from '@/components/ui/date-picker';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 import EventFileUpload from './event-file-upload';
 import { GENDER } from '@/constants';
 import { techSkils } from '@/data/skills';
@@ -49,19 +50,26 @@ const initialValue = {
 };
 
 const initialState = {
-    result: {},
+    result: { path: '' },
     preview: '',
     hasFile: false,
     error: [],
 };
 export default function SignUpForm() {
-    const { control, handleSubmit, reset } = useForm<SignUpInputs>({
+    const {
+        control,
+        handleSubmit,
+        reset,
+        //formState: { errors },
+        //watch,
+    } = useForm<SignUpInputs>({
         resolver: zodResolver(SignUpSchema),
         defaultValues: initialValue,
     });
     const [file, setFile] = useState<any>(initialState);
     const resetFile = () => setFile(initialState);
     const { mutate: mutateJobSeeker, isPending } = useMutateJobSeeker();
+    const navigate = useNavigate();
 
     const {
         fields: experienceFields,
@@ -100,27 +108,32 @@ export default function SignUpForm() {
     });
 
     const processForm: SubmitHandler<SignUpInputs> = async (data) => {
-        const formData = new FormData();
-        formData.append('cv', file?.result);
-        formData.append('jobTitle', data.jobTitle);
-        formData.append('firstName', data.firstName);
-        formData.append('lastName', data.lastName);
-        formData.append('email', data.email);
-        formData.append('password', data.password);
-        formData.append('phone', data.phone);
-        formData.append('bio', data?.bio || '');
-        formData.append('gender', JSON.stringify(data.gender.value));
-        formData.append('address', JSON.stringify(data.address));
-        formData.append('experience', JSON.stringify(data.experience));
-        formData.append('education', JSON.stringify(data.education));
-        formData.append('portfolio', JSON.stringify(data.portfolio));
-        formData.append('certification', JSON.stringify(data.certification));
-        formData.append('skills', JSON.stringify(data.skills));
-
+        const transformedData = {
+            ...data,
+            gender:
+                typeof data.gender === 'object' && data.gender.value
+                    ? data.gender.value
+                    : data.gender,
+            skills: Array.isArray(data.skills)
+                ? data.skills.map((skill) =>
+                      skill.value ? skill.value : skill
+                  )
+                : data.skills,
+            experience: data?.experience?.map((exp) => ({
+                ...exp,
+                startDate: new Date(exp.startDate).toISOString(),
+                endDate: new Date(exp.endDate).toISOString(),
+            })),
+            certification: data?.certification?.map((cert) => ({
+                ...cert,
+                date: new Date(cert.date).toISOString(),
+            })),
+            cv: file.result.path,
+        };
         mutateJobSeeker(
             {
                 requestMethod: RequestMethod.POST,
-                requestPayload: formData,
+                requestPayload: transformedData,
             },
             {
                 onSuccess: (res) => {
@@ -128,22 +141,13 @@ export default function SignUpForm() {
                         description: res?.data?.message,
                     });
                     reset();
+                    navigate('/login');
                 },
                 onError: (err: any) => {
-                    console.log(err);
-                    toast.error(err.response.data.error);
+                    toast.error(err.response.data.message);
                 },
             }
         );
-        //for (let [key, value] of formData.entries()) {
-        //    console.log(`${key}: ${value}`);
-        //}
-        //data.cv = formData.image;
-        //const formattedData = {
-        //    ...data,
-        //    skills: data.skills.map((skill) => skill.value),
-        //    gender: data.gender.value,
-        //};
     };
 
     const genderOptions = useMemo(() => GENDER, []);
@@ -577,16 +581,13 @@ export default function SignUpForm() {
                         />
                     </section>
 
-                    {/* Submit Button */}
-                    <div className="text-right">
-                        <Button
-                            type="submit"
-                            className="px-6 py-2 text-white bg-blue-600 rounded-lg"
-                            isLoading={isPending}
-                        >
-                            Submit
-                        </Button>
-                    </div>
+                    <Button
+                        className="w-full py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition duration-300 ease-in-out"
+                        type="submit"
+                        label="Register"
+                        isLoading={isPending}
+                        loadingText="Please wait"
+                    />
                 </form>
             </div>
         </div>

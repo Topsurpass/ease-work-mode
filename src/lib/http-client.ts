@@ -22,18 +22,18 @@ export const refreshAccessToken = async () => {
     const addUserToStore = useAuthStore.getState().setUser;
     const logout = useAuthStore.getState().reset;
     try {
-        const { accessToken } = useAuthStore.getState();
-        const res = await HTTP.post('/api/v1/user/refresh', {
-            refreshToken: accessToken,
+        const { refreshToken } = useAuthStore.getState();
+        const res = await HTTP.post('/user/refresh', {
+            refreshToken,
         });
-        const { token, ...rest } = res.data.data;
-        const decodedToken = jwtDecode(token);
+        const { accessToken, ...rest } = res.data;
+        const decodedToken = jwtDecode(accessToken);
         addUserToStore({
-            token,
+            accessToken,
             ...rest,
             ...decodedToken,
         } as any);
-        return token;
+        return accessToken;
     } catch (err: any) {
         logout();
         toast.error(err?.response?.data?.error);

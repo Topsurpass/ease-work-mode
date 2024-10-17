@@ -1,4 +1,4 @@
-import Apply from './apply';
+import Apply from './applyForm';
 export default function ApplyNow() {
     return <Apply />;
 }
