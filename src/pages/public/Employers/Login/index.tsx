@@ -21,7 +21,7 @@ export default function EmployerLogin() {
     const { control, handleSubmit } = useForm<LoginInputs>({
         resolver: zodResolver(LoginSchema),
         defaultValues: {
-            email: 'temitopeabiodun685@gmail.com',
+            email: 'employertest@gmail.com',
             password: 'Password',
         },
     });

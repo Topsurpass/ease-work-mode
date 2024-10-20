@@ -3,7 +3,8 @@ import { jwtDecode } from 'jwt-decode';
 import { toast } from 'sonner';
 import { HTTP } from '@/lib/http-client';
 import { setAuthTokenHTTP } from '@/lib/set-auth-token';
-import useAuthStore from '@/stores/user-store';
+//import useAuthStore from '@/stores/user-store';
+import useEmpAuthStore from '@/stores/employer-store';
 
 type RequestPayload = {
     email: string;
@@ -12,7 +13,7 @@ type RequestPayload = {
 
 const useLoginEmployer = () => {
     const queryClient = useQueryClient();
-    const addUserToStore = useAuthStore((state) => state.setUser);
+    const addUserToStore = useEmpAuthStore((state) => state.setUser);
     return useMutation({
         mutationFn: async (requestPayload: RequestPayload) => {
             try {

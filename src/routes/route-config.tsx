@@ -15,11 +15,16 @@ import EmployerLogin from '@/pages/public/Employers/Login';
 import Profile from '@/pages/User/Profile';
 import UserDashboard from '@/pages/User/Dashboard';
 import Applications from '@/pages/User/Applications';
-import EmployerDashBoard from '@/pages/Employer';
+import EmployerDashBoard from '@/pages/Employer/dashboard';
 import ApplyNow from '@/pages/User/ApplyNow';
-
+import Applicant from '@/pages/Employer/applicants';
+import ManageJobs from '@/pages/Employer/manage-jobs';
+import PostJobs from '@/pages/Employer/post-jobs';
+import EmployerProfile from '@/pages/Employer/profile';
+import EmployerSettings from '@/pages/Employer/settings';
 const routeConfig = [
     {
+        path: '/',
         element: (
             <PublicRoute>
                 <PublicLayout />
@@ -90,7 +95,7 @@ const routeConfig = [
         ],
     },
     {
-        path: '/employer',
+        path: '/',
         element: (
             <ProtectedEmployerRoute>
                 <ProtectedEmployerLayout />
@@ -99,8 +104,28 @@ const routeConfig = [
         children: [
             {
                 index: true,
-                path: 'dashboard',
+                path: 'employer/dashboard',
                 element: <EmployerDashBoard />,
+            },
+            {
+                path: 'employer/applicants',
+                element: <Applicant />,
+            },
+            {
+                path: 'employer/post-jobs',
+                element: <PostJobs />,
+            },
+            {
+                path: 'employer/manage-jobs',
+                element: <ManageJobs />,
+            },
+            {
+                path: 'employer/profile',
+                element: <EmployerProfile />,
+            },
+            {
+                path: 'employer/settings',
+                element: <EmployerSettings />,
             },
         ],
     },
