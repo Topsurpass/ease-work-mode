@@ -7,4 +7,4 @@ export { default as ReactSelect } from './react-select/select-field';
 export { default as CustomDatePicker } from './date-field';
 export { default as ReactAsyncSelect } from './react-select/select-async-field';
 export { default as SelectCreatableField } from './react-select/select-creatable-field';
-export { default as DatePickerField } from './react-date-picker';
+//export { default as DatePickerField } from './react-date-picker';
