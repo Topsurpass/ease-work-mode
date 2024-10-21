@@ -4,7 +4,6 @@ import {
     Settings,
     Users,
     LayoutDashboard,
-    BriefcaseBusiness,
 } from 'lucide-react';
 
 export type navMenuProps = {
@@ -18,11 +17,6 @@ export const navMenu: navMenuProps = [
         icon: LayoutDashboard,
         label: 'Dashboard',
         path: 'employer/dashboard',
-    },
-    {
-        icon: BriefcaseBusiness,
-        label: 'Post jobs',
-        path: 'employer/post-jobs',
     },
     {
         icon: Briefcase,

@@ -6,7 +6,7 @@ export default function Header() {
     const { toggleSidebar } = useMenu();
 
     return (
-        <header className="flex items-center justify-between p-4 bg-white border-b shadow-md h-20">
+        <header className="flex items-center justify-between p-4 bg-gray-50 border-b shadow-md h-20 fixed w-full z-30 md:w-[calc(100%-16rem)] md:left-64">
             <div className="flex items-center space-x-2">
                 <Menu
                     className="w-6 h-6 cursor-pointer md:hidden"

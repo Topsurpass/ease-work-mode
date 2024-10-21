@@ -15,8 +15,8 @@ export const Sidebar = () => {
     return (
         <div>
             {/*Desktop*/}
-            <aside className="w-64 bg-white hidden md:flex flex-col border-r h-screen">
-                <div className="pt-6 px-4 border-b border-blue-400 h-20 text-blue-500">
+            <aside className="md:w-64 bg-gray-50 hidden md:flex flex-col border-r h-screen fixed z-30">
+                <div className="pt-6 px-4 border-b  h-20 text-blue-500">
                     <h2 className="text-xl font-bold">Ease work</h2>
                 </div>
                 <nav className="mt-6 flex-grow overflow-y-auto">
@@ -36,8 +36,8 @@ export const Sidebar = () => {
             {/*Mobile*/}
 
             {isSidebarOpen && (
-                <aside className="fixed inset-0 z-30 w-full bg-white md:hidden flex flex-col">
-                    <div className="flex justify-between items-center px-4 py-3 border-b border-blue-400">
+                <aside className="fixed inset-0 z-50 w-full bg-white md:hidden flex flex-col">
+                    <div className="flex justify-between items-center px-4 py-3 border-b border-blue-400 h-20">
                         <h2 className="text-xl font-bold text-blue-500">
                             Ease work
                         </h2>

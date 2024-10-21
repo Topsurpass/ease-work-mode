@@ -4,11 +4,11 @@ import Header from '@/pages/Employer/components/header';
 
 export default function ProtectedEmployerLayout() {
     return (
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex min-h-screen">
             <Sidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
                 <Header />
-                <main className="p-6 overflow-y-auto flex-1 bg-gray-100">
+                <main className="p-3 overflow-y-auto flex-1  mt-20 md:ml-64">
                     <Outlet />
                 </main>
             </div>

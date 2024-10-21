@@ -1,23 +1,26 @@
+/* eslint-disable react/no-unstable-nested-components */
 import { useMemo, useState } from 'react';
-import { Badge } from '@/components/ui/badge';
 import { PaginationState, VisibilityState } from '@tanstack/react-table';
+import { View, X } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import DataTableSSR from '@/components/table/datatable-ssr2';
-import Button from '@/components/ui/button';
-
+import { mockJobData } from '../postedJobsData';
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Ellipsis, Pencil, Trash2, Plus } from 'lucide-react';
-import { mockJobData } from './postedJobsData';
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+} from '@/components/ui/card';
+import Button from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
-export default function ManageJobs() {
+export default function DisplayJobApplicants() {
     const [status, setStatus] = useState(true);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
         id: false,
     });
+    const navigate = useNavigate();
+
     const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
         pageIndex: 0,
         pageSize: 20,
@@ -116,60 +119,48 @@ export default function ManageJobs() {
             {
                 header: () => <span className="font-semibold">Actions</span>,
                 id: 'action',
-                cell: () => (
-                    <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <Button variant="outline" size="icon">
-                                <Ellipsis size={18} />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className=" ml-8 w-40">
-                            <DropdownMenuItem
-                                className="flex cursor-pointer items-center gap-2 hover:bg-blue-500"
-                                onClick={() => {}}
-                            >
-                                <Pencil size={18} />
-                                <span>Edit job</span>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                className="flex cursor-pointer items-center gap-2 hover:bg-blue-500"
-                                onClick={() => {}}
-                            >
-                                <Trash2 size={18} />
-                                <span>View applicants</span>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                ),
+                cell: () => <View onClick={() => {}} />,
             },
         ],
         []
     );
 
     return (
-        <section className="bg-white w-full rounded-md">
-            <div className="mb-10 flex justify-between items-center h-[100px]">
-                <div className="md:p-0">
-                    <h2 className="text-lg font-semibold text-gray-800">
-                        Manage Jobs
-                    </h2>
-                    <p className="text-gray-600 text-sm">
-                        Keep track of your posted jobs and manage applications.
+        <section className="bg-white w-full rounded-md grid gap-8">
+            <section className="grid grid-cols-1 gap-4">
+                <Card className="shadow-lg border-l-4 border-blue-500 flex justify-between">
+                    <CardHeader>
+                        <CardTitle className="text-lg font-semibold text-gray-800">
+                            Frontend Developer
+                        </CardTitle>
+                        <CardDescription className="text-gray-600">
+                            FaceBook Inc | Remote | Lagos Nigeria
+                        </CardDescription>
+                        <p className="text-gray-500 mt-2">
+                            Pay Range: $120,000 - $ 150,000
+                        </p>
+                    </CardHeader>
+                    <CardHeader>
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className="rounded-full"
+                            onClick={() => navigate('/employer/manage-jobs')}
+                            aria-label="Close"
+                        >
+                            <X />
+                        </Button>
+                    </CardHeader>
+                </Card>
+            </section>
+            <section className="flex justify-between">
+                <div>
+                    <h3 className="text-lg font-semibold"> Job Applicants</h3>
+                    <p className="text-sm">
+                        Job seekers that applied for the job
                     </p>
                 </div>
-                <div className="flex gap-3">
-                    <Button
-                        type="button"
-                        className="group flex items-center gap-2 active:bg-blue-200"
-                        //onClick={() => onModalOpen(EntityType.MINISTRY)}
-                        variant="outline"
-                        size="lg"
-                        label="New Job"
-                        icon={Plus}
-                    />
-                </div>
-            </div>
-
+            </section>
             <div className="rounded-lg">
                 <DataTableSSR
                     data={filteredData}

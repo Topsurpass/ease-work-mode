@@ -41,7 +41,7 @@ export default function DatatableSearchInput({
     }, [value]);
 
     return (
-        <div className="group relative">
+        <div className="group relative border rounded-md">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5 text-gray-500">
                 <Search size={20} />
             </div>
@@ -50,7 +50,7 @@ export default function DatatableSearchInput({
                 className={cn(
                     'focus:ring-primary-200 pl-10 focus:border-primary/40',
                     'block w-full rounded-md py-2 pr-10',
-                    'shadow-sm outline transition-all placeholder:text-sm',
+                    'shadow-sm outline-none transition-all placeholder:text-sm',
                     'hover:bg-gray-50 dark:hover:bg-transparent',
                     className
                 )}

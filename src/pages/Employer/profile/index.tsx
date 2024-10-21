@@ -1,7 +1,8 @@
+import JobApplicants from '../manage-jobs/applicants';
 export default function Profile() {
     return (
         <>
-            <p>Profile</p>
+            <JobApplicants />
         </>
     );
 }

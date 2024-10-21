@@ -19,7 +19,6 @@ import EmployerDashBoard from '@/pages/Employer/dashboard';
 import ApplyNow from '@/pages/User/ApplyNow';
 import Applicant from '@/pages/Employer/applicants';
 import ManageJobs from '@/pages/Employer/manage-jobs';
-import PostJobs from '@/pages/Employer/post-jobs';
 import EmployerProfile from '@/pages/Employer/profile';
 import EmployerSettings from '@/pages/Employer/settings';
 const routeConfig = [
@@ -110,10 +109,6 @@ const routeConfig = [
             {
                 path: 'employer/applicants',
                 element: <Applicant />,
-            },
-            {
-                path: 'employer/post-jobs',
-                element: <PostJobs />,
             },
             {
                 path: 'employer/manage-jobs',

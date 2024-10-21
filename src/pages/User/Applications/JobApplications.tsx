@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { PaginationState, VisibilityState } from '@tanstack/react-table';
-import DataTableSSR from '@/components/table/datatable-ssr';
+import DataTableSSR from '@/components/table/datatable-ssr-card';
 import Button from '@/components/ui/button';
 
 import {
